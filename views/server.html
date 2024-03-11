@@ -44,20 +44,24 @@
       }
 
       body {
-        background: linear-gradient(to right, #8a2387, #e94057, #f27121);
+        background: linear-gradient(to right, #238a5a, #136f8b);
         color: #fff;
         overflow-x: hidden;
         font-family: "Euclid Circular B Medium", Poppins;
       }
 
-      .card {
+      .card, .button-card {
         background: rgba(255, 255, 255, 0.35);
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
         backdrop-filter: blur(9px);
         -webkit-backdrop-filter: blur(9px);
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 16px;
+        border: 2px solid rgba(252, 252, 252, 0.212);
         z-index: 2;
+      }
+
+      .button-card {
+        padding: 2px;
       }
 
       @media (min-width: 991.98px) {
@@ -74,40 +78,6 @@
         left: 0;
         padding: 100px 0 0; /* Height of navbar */
         width: 240px;
-      }
-
-      .circle1,
-      .circle2,
-      .circle3 {
-        background: linear-gradient(
-                to right bottom,
-                rgba(255, 255, 255, 0.2),
-                rgba(255, 255, 255, 0.1)
-        );
-        position: absolute;
-        border-radius: 50%;
-        z-index: -100;
-      }
-
-      .circle1 {
-        top: 5%;
-        right: 5%;
-        height: 10rem;
-        width: 10rem;
-      }
-      .circle2 {
-        top: 10%;
-        left: 10%;
-        border-radius: 50%;
-        height: 8rem;
-        width: 8rem;
-      }
-      .circle3 {
-        bottom: 10%;
-        left: 5%;
-        border-radius: 50%;
-        height: 6rem;
-        width: 6rem;
       }
 
       @media (max-width: 991.98px) {
@@ -141,17 +111,19 @@
 
       .footer {
         position: absolute;
-        left: 0;
+        left: 34vw;
+        right: 34vw;
         bottom: 0;
-        width: 100%;
-        background-color: red;
+        width: 32vw;
+        background-color: black;
         color: white;
         text-align: center;
-        background: rgba(255, 255, 255, 0.5);
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        background: rgba(204, 204, 204, 0.486);
+        box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
         backdrop-filter: blur(9px);
         -webkit-backdrop-filter: blur(9px);
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        border: 2px solid rgba(252, 252, 252, 0.212);
+        border-radius: 16px;
       }
 
       .footer p {
@@ -162,7 +134,7 @@
       }
 
       .footer p a {
-        background: linear-gradient(to right, #8a2387, #e94057, #f27121);
+        background: linear-gradient(to right, #238a5a, #136f8b);
         color: transparent;
         -webkit-background-clip: text;
         background-clip: text;
@@ -188,7 +160,7 @@
                 class="list-group-item list-group-item-action py-2 ripple"
                 style="
                   background: rgba(255, 255, 255, 0.35);
-                  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+                  box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
                   backdrop-filter: blur(9px);
                   -webkit-backdrop-filter: blur(9px);
                   border-radius: 10px;
@@ -205,7 +177,7 @@
                 class="list-group-item list-group-item-action py-2 ripple"
                 style="
                   background: rgba(255, 255, 255, 0.35);
-                  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+                  box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
                   backdrop-filter: blur(9px);
                   -webkit-backdrop-filter: blur(9px);
                   border-radius: 10px;
@@ -221,7 +193,7 @@
                 class="list-group-item list-group-item-action py-2 ripple"
                 style="
                   background: rgba(255, 255, 255, 0.35);
-                  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+                  box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
                   backdrop-filter: blur(9px);
                   -webkit-backdrop-filter: blur(9px);
                   border-radius: 10px;
@@ -287,7 +259,7 @@
                         <p class="mb-0">Songs In Queue</p>
                       </div>
                       <div class="align-self-center">
-                        <i class="fas fa-music text-danger fa-3x"></i>
+                        <i class="fas fa-music fa-3x"></i>
                       </div>
                     </div>
                   </div>
@@ -302,7 +274,7 @@
                         <p class="mb-0">Song Loop</p>
                       </div>
                       <div class="align-self-center">
-                        <i class="fas fa-redo text-success fa-3x"></i>
+                        <i class="fas fa-redo fa-3x"></i>
                       </div>
                     </div>
                   </div>
@@ -317,7 +289,7 @@
                         <p class="mb-0">Queue Loop</p>
                       </div>
                       <div class="align-self-center">
-                        <i class="fas fa-sync text-warning fa-3x"></i>
+                        <i class="fas fa-sync fa-3x"></i>
                       </div>
                     </div>
                   </div>
@@ -332,7 +304,7 @@
                         <p class="mb-0">Prefix</p>
                       </div>
                       <div class="align-self-center">
-                        <i class="fas fa-robot text-info fa-3x"></i>
+                        <i class="fas fa-robot fa-3x"></i>
                       </div>
                     </div>
                   </div>
@@ -346,6 +318,15 @@
               <br />
               <p>Duration</p>
               <p id="duration"></p>
+              <!-- <div class="container text-center" id="queue-text">
+                <p>Queued: <span id="expandedQueue"></span></p>
+                
+              </div> -->
+              <div id="button-tile">
+                <button class="button-card" id="skip-current">Skip</button>
+              </br>
+                <button class="button-card" id="remove-last">Remove Last Song</button>
+              </div>
             </div>
           </section>
           <!-- Footer -->
@@ -410,10 +391,29 @@
       socket.emit("server", window.location.pathname.split("/")[2]);
 
       socket.on("server", (data) => {
+      $(function() {
+        function test() {
+          alert("testmessage");
+        }
+        $("#skip-current").click(test);
+      });
+
+      
+      $(function() {
+        function removeLast() {
+          socket.emit("server", data.queue.pop());
+          alert("test2");
+        }
+        $("#remove-last").click(removeLast);
+      });
+    });
+    
+      socket.on("server", (data) => {
         $("#songInQueue").text(data.queue);
         $("#songLoop").text(data.songsLoop);
         $("#queueLoop").text(data.queueLoop);
         $("#prefix").text(data.prefix);
+        // $("#expandedQueue").text(data.tracklist); // need to find song name object var in socket/index.js, made emit var tracklist & nextSong for testing
         $("#now-playing").text(
           data.nowPlaying ? data.nowPlaying.title : "Nothing playing"
         );

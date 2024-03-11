@@ -14,7 +14,7 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <link
       rel="stylesheet"
@@ -44,7 +44,7 @@
       }
 
       body {
-        background: linear-gradient(to right, #8a2387, #e94057, #f27121);
+        background: linear-gradient(to right, #238a5a, #136f8b);
         color: #fff;
         overflow-x: hidden;
         font-family: "Euclid Circular B Medium", Poppins;
@@ -64,40 +64,6 @@
         left: 0;
         padding: 100px 0 0; /* Height of navbar */
         width: 240px;
-      }
-
-      .circle1,
-      .circle2,
-      .circle3 {
-        background: linear-gradient(
-                to right bottom,
-                rgba(255, 255, 255, 0.2),
-                rgba(255, 255, 255, 0.1)
-        );
-        position: absolute;
-        border-radius: 50%;
-        z-index: -100;
-      }
-
-      .circle1 {
-        top: 5%;
-        right: 5%;
-        height: 10rem;
-        width: 10rem;
-      }
-      .circle2 {
-        top: 10%;
-        left: 10%;
-        border-radius: 50%;
-        height: 8rem;
-        width: 8rem;
-      }
-      .circle3 {
-        bottom: 10%;
-        left: 5%;
-        border-radius: 50%;
-        height: 6rem;
-        width: 6rem;
       }
 
       @media (max-width: 991.98px) {
@@ -133,17 +99,19 @@
 
       .footer {
         position: absolute;
-        left: 0;
+        left: 34vw;
+        right: 34vw;
         bottom: 0;
-        width: 100%;
-        background-color: red;
+        width: 32vw;
+        background-color: black;
         color: white;
         text-align: center;
-        background: rgba(255, 255, 255, 0.5);
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        background: rgba(204, 204, 204, 0.486);
+        box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
         backdrop-filter: blur(9px);
         -webkit-backdrop-filter: blur(9px);
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        border: 2px solid rgba(252, 252, 252, 0.212);
+        border-radius: 16px;
       }
 
       .footer p {
@@ -154,7 +122,7 @@
       }
 
       .footer p a {
-        background: linear-gradient(to right, #8a2387, #e94057, #f27121);
+        background: linear-gradient(to right, #238a5a, #136f8b);
         color: transparent;
         -webkit-background-clip: text;
         background-clip: text;
@@ -180,7 +148,7 @@
                 class="list-group-item list-group-item-action py-2 ripple"
                 style="
                   background: rgba(255, 255, 255, 0.35);
-                  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+                  box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
                   backdrop-filter: blur(9px);
                   -webkit-backdrop-filter: blur(9px);
                   border-radius: 10px;
@@ -188,16 +156,16 @@
                 "
                 aria-current="true"
               >
-                <i class="fas fa-tachometer-alt fa-fw me-3"></i
+                <i class="fa-brands fa-discord me-3" style="color:#F5F5F5"></i
                 ><span>Main Dashboard</span>
               </a>
               <br />
               <a
                 href="/servers"
-                class="list-group-item list-group-item-action py-2 ripple active"
+                class="list-group-item list-group-item-action py-2 ripple"
                 style="
                   background: rgba(255, 255, 255, 0.35);
-                  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+                  box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
                   backdrop-filter: blur(9px);
                   -webkit-backdrop-filter: blur(9px);
                   border-radius: 10px;
@@ -213,7 +181,7 @@
                 class="list-group-item list-group-item-action py-2 ripple"
                 style="
                   background: rgba(255, 255, 255, 0.35);
-                  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+                  box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
                   backdrop-filter: blur(9px);
                   -webkit-backdrop-filter: blur(9px);
                   border-radius: 10px;
