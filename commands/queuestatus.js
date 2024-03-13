@@ -4,7 +4,7 @@ const prettyMilliseconds = require("pretty-ms");
 let d;
 
 module.exports = {
-  name: "queue2",
+  name: "queuestatus",
   description: "Shows all currently enqueued songs",
   usage: "",
   permissions: {
