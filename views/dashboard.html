@@ -50,6 +50,10 @@
         font-family: "Euclid Circular B Medium", Poppins;
       }
 
+      #commands, #songs, #users, #guilds {
+        color: #792040;
+      }
+
       @media (min-width: 991.98px) {
         main {
           padding-left: 240px;
@@ -131,7 +135,7 @@
       .footer p a:hover {
         color: white;
       }
-      
+
     </style>
   </head>
 
@@ -145,7 +149,7 @@
             <div class="list-group list-group-flush mx-3 mt-4">
               <a
                 href="/dashboard"
-                class="list-group-item list-group-item-action py-2 ripple"
+                class="list-group-item list-group-item-action py-2 ripple sidehover"
                 style="
                   background: rgba(255, 255, 255, 0.35);
                   box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
@@ -153,7 +157,7 @@
                   -webkit-backdrop-filter: blur(9px);
                   border-radius: 10px;
                   border: 1px solid rgba(255, 255, 255, 0.18);
-                  color:#F5F5F5;
+                  color:#792040;
                 "
                 aria-current="true"
               >
@@ -164,6 +168,7 @@
               <a
                 href="/servers"
                 class="list-group-item list-group-item-action py-2 ripple"
+                id="sidehover"
                 style="
                   background: rgba(255, 255, 255, 0.35);
                   box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
@@ -171,7 +176,7 @@
                   -webkit-backdrop-filter: blur(9px);
                   border-radius: 10px;
                   border: 1px solid rgba(255, 255, 255, 0.18);
-                  color:#F5F5F5;
+                  color:#792040;
                 "
               >
                 <i class="fa-brands fa-discord me-3" style="color:#F5F5F5"></i
@@ -180,7 +185,7 @@
               <br />
               <a
                 href="/logout"
-                class="list-group-item list-group-item-action py-2 ripple"
+                class="list-group-item list-group-item-action py-2 ripple sidehover"
                 style="
                   background: rgba(255, 255, 255, 0.35);
                   box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
@@ -188,7 +193,7 @@
                   -webkit-backdrop-filter: blur(9px);
                   border-radius: 10px;
                   border: 1px solid rgba(255, 255, 255, 0.18);
-                  color:#F5F5F5;
+                  color:#792040;
                 "
               >
                 <i class="fas fa-sign-out-alt fa-fw me-3" style="color:#F5F5F5"></i
