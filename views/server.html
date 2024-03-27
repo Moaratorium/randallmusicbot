@@ -394,26 +394,15 @@
       });
 
       var socket = io();
-      socket.emit("server", window.location.pathname.split("/")[2]);
-
-      socket.on("server", (data) => {
-      $(function() {
-        function test() {
-          alert("testmessage");
-        }
-        $("#skip-current").click(test);
-      });
-
-      
-      $(function() {
-        function removeLast() {
-          socket.emit("server", data.queue.pop());
-          alert("test2");
-        }
-        $("#remove-last").click(removeLast);
-      });
-    });
+      socket.emit("server", window.location.pathname.split("/")[2]); 
+      // grab the pathname, cut it into array, sends it to the socket server listener (args: "server", serverID) which triggers it to send misc data
     
+      $(function(){
+        $("#remove-last").click(function(){
+          socket.emit("removeLast", window.location.pathname.split("/")[2])
+        })
+      })
+
       socket.on("server", (data) => {
         $("#songInQueue").text(data.queue);
         $("#songLoop").text(data.songsLoop);
