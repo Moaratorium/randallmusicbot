@@ -401,6 +401,9 @@
         $("#remove-last").click(function(){
           socket.emit("removeLast", window.location.pathname.split("/")[2])
         })
+        $("#skip-current").click(function(){
+          socket.emit("skipCurrent", window.location.pathname.split("/")[2])
+        })
       })
 
       socket.on("server", (data) => {
