@@ -31,7 +31,19 @@ module.exports = (io) => {
         return socket.emit("error", "No player exists");
       } else {
         player.queue.pop();
-        console.log(player.queue);
+      }
+    })
+
+    socket.on("skipCurrent", (ServerID) => {
+      const Client = require("../../index");
+      if (!Client.Ready) return;
+      let Guild = Client.guilds.cache.get(ServerID);
+      if (!Guild) return socket.emit("error", "Unable to find that server");
+      let player = Client.Manager.get(Guild.id);
+      if (!player) {
+        return socket.emit("error", "No player exists");
+      } else {
+        player.stop();
       }
     })
 
