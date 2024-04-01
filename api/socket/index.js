@@ -85,6 +85,7 @@ module.exports = (io) => {
               ? prettyMilliseconds(player.position, { colonNotation: true })
               : false,
             nowPlaying: player.queue.current ? player.queue.current : false,
+            queueDetails: player.queue ? player.queue : null,
           });
         }
       }, 1000);
