@@ -329,19 +329,19 @@
               <div class="container text-center" id="queue-text">
                 <p>Queued: <span></span></p>
                 <div id="pagedQueue">
-                  <div id="q1"><span id="q1-text"></span></div>
-                  <div id="q2"><span id="q2-text"></span></div>
-                  <div id="q3"><span id="q3-text"></span></div>
-                  <div id="q4"><span id="q4-text"></span></div>
-                  <div id="q5"><span id="q5-text"></span></div>
-                  <div id="q6"><span id="q6-text"></span></div>
-                  <div id="q7"><span id="q7-text"></span></div>
-                  <div id="q8"><span id="q8-text"></span></div>
-                  <div id="q9"><span id="q9-text"></span></div>
-                  <div id="q10"><span id="q10-text"></span></div>
+                  <div id="q1"><span id="q1-text" class="hoverRemove" value="0"></span></div>
+                  <div id="q2"><span id="q2-text" class="hoverRemove" value="1"></span></div>
+                  <div id="q3"><span id="q3-text" class="hoverRemove" value="2"></span></div>
+                  <div id="q4"><span id="q4-text" class="hoverRemove" value="3"></span></div>
+                  <div id="q5"><span id="q5-text" class="hoverRemove" value="4"></span></div>
+                  <div id="q6"><span id="q6-text" class="hoverRemove" value="5"></span></div>
+                  <div id="q7"><span id="q7-text" class="hoverRemove" value="6"></span></div>
+                  <div id="q8"><span id="q8-text" class="hoverRemove" value="7"></span></div>
+                  <div id="q9"><span id="q9-text" class="hoverRemove" value="8"></span></div>
+                  <div id="q10"><span id="q10-text" class="hoverRemove" value="9"></span></div>
                 </br>
                 </div>
-              </div>
+                  </div>
               <div id="button-tile">
                 <button class="button-card" id="skip-current"><span class="button-hover">Skip Current Song</span></button>
                 <button class="button-card" id="remove-last"><span class="button-hover">Remove Last Song</span></button>
@@ -419,6 +419,17 @@
         })
       })
 
+      $(".hoverRemove").hover(function() {
+        $(this).css('cursor','pointer').attr('title', 'Click to remove from queue.');
+    }, function() {
+        $(this).css('cursor','auto');
+        })
+
+      $(".hoverRemove").click((value) =>{
+        let index = value;
+        socket.emit("removeQueueIndex", window.location.pathname.split("/")[2], index)
+      })
+
       socket.on("server", (data) => {
         $("#songInQueue").text(data.queue);
         $("#songLoop").text(data.songsLoop);
@@ -435,16 +446,16 @@
           $("#duration").html(
             `<span> Nothing is playing right now, Add some songs in discord? </span>`
           );
-        $("#q1-text").text(data.queueDetails[0].title);
-        $("#q2-text").text(data.queueDetails[1].title);
-        $("#q3-text").text(data.queueDetails[2].title);
-        $("#q4-text").text(data.queueDetails[3].title);
-        $("#q5-text").text(data.queueDetails[4].title);
-        $("#q6-text").text(data.queueDetails[5].title);
-        $("#q7-text").text(data.queueDetails[6].title);
-        $("#q8-text").text(data.queueDetails[7].title);
-        $("#q9-text").text(data.queueDetails[8].title);
-        $("#q10-text").text(data.queueDetails[9].title);
+        $("#q1-text").text((!data.queueDetails[0]) ? " " : data.queueDetails[0].title);
+        $("#q2-text").text((!data.queueDetails[1]) ? " " : data.queueDetails[1].title);
+        $("#q3-text").text((!data.queueDetails[2]) ? " " : data.queueDetails[2].title);
+        $("#q4-text").text((!data.queueDetails[3]) ? " " : data.queueDetails[3].title);
+        $("#q5-text").text((!data.queueDetails[4]) ? " " : data.queueDetails[4].title);
+        $("#q6-text").text((!data.queueDetails[5]) ? " " : data.queueDetails[5].title);
+        $("#q7-text").text((!data.queueDetails[6]) ? " " : data.queueDetails[6].title);
+        $("#q8-text").text((!data.queueDetails[7]) ? " " : data.queueDetails[7].title);
+        $("#q9-text").text((!data.queueDetails[8]) ? " " : data.queueDetails[8].title);
+        $("#q10-text").text((!data.queueDetails[9]) ? " " : data.queueDetails[9].title);
       });
     });
   </script>

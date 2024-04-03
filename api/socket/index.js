@@ -47,6 +47,19 @@ module.exports = (io) => {
       }
     })
 
+    socket.on("removeQueueIndex", (ServerID, index) => {
+      const Client = require("../../index");
+      if (!Client.Ready) return;
+      let Guild = Client.guilds.cache.get(ServerID);
+      if (!Guild) return socket.emit("error", "Unable to find that server");
+      let player = Client.Manager.get(Guild.id);
+      if (!player) {
+        return socket.emit("error", "No player exists");
+      } else {
+        player.queue.splice(index, 1);
+      }
+    })
+
     socket.on("server", (ServerID) => {
       if (socket.Server) clearInterval(socket.Server);
       socket.Server = setInterval(async () => {
