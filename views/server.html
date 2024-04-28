@@ -81,29 +81,37 @@
       /* Table */
       .table-striped>tbody>tr:nth-child(odd)>td, 
       .table-striped>tbody>tr:nth-child(odd)>th {
-      background-color: #238a5a;
-      color: #fff;
+      background-color: #318b61;
+      color: #792040;
+      filter: contrast(1.25);
       }
 
       .table-striped>tbody>tr:nth-child(odd)>td:hover, 
       .table-striped>tbody>tr:nth-child(odd)>th:hover {
-      background-color: #238a5a;
-      color: #792040;
+      background-color: #318b61;
+      color: #fff;
+      filter: contrast(1.25);
       }
 
       .table-striped>tbody>tr:nth-child(even)>td, 
       .table-striped>tbody>tr:nth-child(even)>th {
-      background-color: #136f8b;
+      background-color: #136f8b8c;
+      color: #792040;
+      filter: contrast(1.25);
       }
 
       .table-striped>tbody>tr:nth-child(even)>td:hover, 
       .table-striped>tbody>tr:nth-child(even)>th:hover {
-      background-color: #136f8b;
-      color:#792040;
+      background-color: #136f8b8c;
+      color:#fff;
+      filter: contrast(1.25);
       }
 
       #test-table {
         color: #fff;
+        font-size: large;
+        font-weight: 500;
+        border-collapse: separate;
       }
 
       /* Sidebar */
@@ -360,25 +368,15 @@
               <!-- Expanded Queue -->
               <div class="container text-center" id="queue-text">
                 <p>Queued: <span></span></p>
-                <div id="pagedQueue">
-                  <div id="q1"><span id="q1-text" class="hoverRemove" value="0"></span></div>
-                  <div id="q2"><span id="q2-text" class="hoverRemove" value="1"></span></div>
-                  <div id="q3"><span id="q3-text" class="hoverRemove" value="2"></span></div>
-                  <div id="q4"><span id="q4-text" class="hoverRemove" value="3"></span></div>
-                  <div id="q5"><span id="q5-text" class="hoverRemove" value="4"></span></div>
-                  <div id="q6"><span id="q6-text" class="hoverRemove" value="5"></span></div>
-                  <div id="q7"><span id="q7-text" class="hoverRemove" value="6"></span></div>
-                  <div id="q8"><span id="q8-text" class="hoverRemove" value="7"></span></div>
-                  <div id="q9"><span id="q9-text" class="hoverRemove" value="8"></span></div>
-                  <div id="q10"><span id="q10-text" class="hoverRemove" value="9"></span></div>
-                </br>
-                </div>
                 <div id="test-table-wrapper">
                   <!-- queue table formatting here-->
                   <table id="test-table" class="table display cell-border table-striped hover" width="100%">
                     <thead>
                       <tr>
                         <th>Title</th>
+                        <th>Author</th>
+                        <th>Requested By</th>
+                        <th></th>
                       </tr>
                     </thead>
                   </table>
@@ -433,19 +431,6 @@
   </body>
   <script>
 
-const dummyData = [
-  {"index": "0", "title": "Stay", "artist": "Zedd & Alessia Clara"},
-  {"index": "1", "title": "Clarity", "artist": "Zedd ft. Foxes"},
-  {"index": "2", "title": "Wake Me Up", "artist": "Avicii"},
-  {"index": "3", "title": "Closer", "artist": "The Chainsmokers ft. Halsey"},
-  {"index": "4", "title": "Titanium", "artist": "David Guetta ft. Sia"}
-]
-
-const simpleDummyQueueDetails = [
-  {"title": "No Mana A_V Set @ Gravity 2021"},
-  {"title": "No Mana, vowl., Leyla Diamondi - Falling In Love"},
-  {"title": "No Mana x SOFI - Digital Friends"}
-]
       let storeQueue = []; 
 
       function refreshTable(){
@@ -460,7 +445,10 @@ const simpleDummyQueueDetails = [
     $(document).ready(() => {
       var table = $("#test-table").DataTable({
         columns: [
-          {title: 'Name', data: 'title'}
+          {title: 'Name', data: 'title'},
+          {title: 'Artist', data: 'author'},
+          {title: 'Requested By:', data: 'requester.username'},
+          {data: null, defaultContent: '<button style="color:#792040; border-radius:10px; background:rgba(255, 255, 255, 0.35)">Remove</button>', targets: -1}
         ],
         data: storeQueue,
         order: {
