@@ -27,9 +27,8 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap"
       rel="stylesheet"
     />
-    <script src='https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js'></script>
-    <script src='https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js'></script>
-    <script src='https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js'></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.min.css" 
+    />
     <style>
       @font-face {
         font-family: "Euclid Circular B Medium";
@@ -442,13 +441,17 @@
         }
       }
 
+    // $("#test-table tbody").on('click', '.removeButton', function() {
+    //   alert('test');
+    // })
+
     $(document).ready(() => {
       var table = $("#test-table").DataTable({
         columns: [
           {title: 'Name', data: 'title'},
           {title: 'Artist', data: 'author'},
           {title: 'Requested By:', data: 'requester.username'},
-          {data: null, defaultContent: '<button style="color:#792040; border-radius:10px; background:rgba(255, 255, 255, 0.35)">Remove</button>', targets: -1}
+          {data: null, defaultContent: '<button class="removeButton" style="color:#792040; border-radius:10px; background:rgba(255, 255, 255, 0.35)">Remove</button>'}
         ],
         data: storeQueue,
         order: {
@@ -525,17 +528,8 @@
         else
           $("#duration").html(
             `<span> Nothing is playing right now, Add some songs in discord? </span>`
-          );
-        // $("#q1-text").text((!data.queueDetails[0]) ? " " : data.queueDetails[0].title);
-        // $("#q2-text").text((!data.queueDetails[1]) ? " " : data.queueDetails[1].title);
-        // $("#q3-text").text((!data.queueDetails[2]) ? " " : data.queueDetails[2].title);
-        // $("#q4-text").text((!data.queueDetails[3]) ? " " : data.queueDetails[3].title);
-        // $("#q5-text").text((!data.queueDetails[4]) ? " " : data.queueDetails[4].title);
-        // $("#q6-text").text((!data.queueDetails[5]) ? " " : data.queueDetails[5].title);
-        // $("#q7-text").text((!data.queueDetails[6]) ? " " : data.queueDetails[6].title);
-        // $("#q8-text").text((!data.queueDetails[7]) ? " " : data.queueDetails[7].title);
-        // $("#q9-text").text((!data.queueDetails[8]) ? " " : data.queueDetails[8].title);
-        // $("#q10-text").text((!data.queueDetails[9]) ? " " : data.queueDetails[9].title);    
+          );    
+
     });
       });
   </script>
