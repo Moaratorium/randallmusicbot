@@ -375,7 +375,6 @@
                         <th>Title</th>
                         <th>Author</th>
                         <th>Requested By</th>
-                        <th></th>
                       </tr>
                     </thead>
                   </table>
@@ -422,7 +421,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
     <script src='https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js'></script>
-    <script src='https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js'></script>
     <script src='https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js'></script>
     <div class="circle1"></div>
     <div class="circle2"></div>
@@ -430,10 +428,25 @@
   </body>
   <script>
 
+    let dummySocketData = [
+      {'title': 'testtitle1',
+      'author': 'testauthor1',
+      'user': 'moaratorium1'
+      },
+      {'title': 'testtitle2',
+      'author': 'testauthor2',
+      'user': 'moaratorium2'
+    },
+    {'title': 'testtitle3',
+      'author': 'testauthor3',
+      'user': 'moaratorium3'
+    },
+    ]
+
       let storeQueue = []; 
 
       function refreshTable(){
-        if (storeQueue.length <= 0){
+        if (storeQueue.length <= 0 || typeof storeQueue == 'undefined'){
           return;
         } else {
           $("#test-table").dataTable().fnClearTable();
@@ -441,17 +454,13 @@
         }
       }
 
-    // $("#test-table tbody").on('click', '.removeButton', function() {
-    //   alert('test');
-    // })
 
     $(document).ready(() => {
       var table = $("#test-table").DataTable({
         columns: [
           {title: 'Name', data: 'title'},
           {title: 'Artist', data: 'author'},
-          {title: 'Requested By:', data: 'requester.username'},
-          {data: null, defaultContent: '<button class="removeButton" style="color:#792040; border-radius:10px; background:rgba(255, 255, 255, 0.35)">Remove</button>'}
+          {title: 'Requested By:', data: 'requester.username'}
         ],
         data: storeQueue,
         order: {
