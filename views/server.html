@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard - Server</title>
     <link rel="shortcut icon" href="/logo2.png" type="image/png" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.min.css" type="css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -25,6 +26,8 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap"
       rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.min.css" 
     />
     <style>
       @font-face {
@@ -74,6 +77,42 @@
         }
       }
 
+      /* Table */
+      .table-striped>tbody>tr:nth-child(odd)>td, 
+      .table-striped>tbody>tr:nth-child(odd)>th {
+      background-color: #318b61;
+      color: #792040;
+      filter: contrast(1.25);
+      }
+
+      .table-striped>tbody>tr:nth-child(odd)>td:hover, 
+      .table-striped>tbody>tr:nth-child(odd)>th:hover {
+      background-color: #318b61;
+      color: #fff;
+      filter: contrast(1.25);
+      }
+
+      .table-striped>tbody>tr:nth-child(even)>td, 
+      .table-striped>tbody>tr:nth-child(even)>th {
+      background-color: #136f8b8c;
+      color: #792040;
+      filter: contrast(1.25);
+      }
+
+      .table-striped>tbody>tr:nth-child(even)>td:hover, 
+      .table-striped>tbody>tr:nth-child(even)>th:hover {
+      background-color: #136f8b8c;
+      color:#fff;
+      filter: contrast(1.25);
+      }
+
+      #test-table {
+        color: #fff;
+        font-size: large;
+        font-weight: 500;
+        border-collapse: separate;
+      }
+
       /* Sidebar */
       .sidebar {
         position: fixed;
@@ -114,7 +153,7 @@
       }
 
       .footer {
-        position: absolute;
+        position: fixed;
         left: 34vw;
         right: 34vw;
         bottom: 0;
@@ -328,18 +367,17 @@
               <!-- Expanded Queue -->
               <div class="container text-center" id="queue-text">
                 <p>Queued: <span></span></p>
-                <div id="pagedQueue">
-                  <div id="q1"><span id="q1-text" class="hoverRemove" value="0"></span></div>
-                  <div id="q2"><span id="q2-text" class="hoverRemove" value="1"></span></div>
-                  <div id="q3"><span id="q3-text" class="hoverRemove" value="2"></span></div>
-                  <div id="q4"><span id="q4-text" class="hoverRemove" value="3"></span></div>
-                  <div id="q5"><span id="q5-text" class="hoverRemove" value="4"></span></div>
-                  <div id="q6"><span id="q6-text" class="hoverRemove" value="5"></span></div>
-                  <div id="q7"><span id="q7-text" class="hoverRemove" value="6"></span></div>
-                  <div id="q8"><span id="q8-text" class="hoverRemove" value="7"></span></div>
-                  <div id="q9"><span id="q9-text" class="hoverRemove" value="8"></span></div>
-                  <div id="q10"><span id="q10-text" class="hoverRemove" value="9"></span></div>
-                </br>
+                <div id="test-table-wrapper">
+                  <!-- queue table formatting here-->
+                  <table id="test-table" class="table display cell-border table-striped hover" width="100%">
+                    <thead>
+                      <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Requested By</th>
+                      </tr>
+                    </thead>
+                  </table>
                 </div>
                   </div>
               <div id="button-tile">
@@ -382,11 +420,63 @@
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script src='https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js'></script>
+    <script src='https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js'></script>
     <div class="circle1"></div>
     <div class="circle2"></div>
     <div class="circle3"></div>
   </body>
   <script>
+
+    let dummySocketData = [
+      {'title': 'testtitle1',
+      'author': 'testauthor1',
+      'user': 'moaratorium1'
+      },
+      {'title': 'testtitle2',
+      'author': 'testauthor2',
+      'user': 'moaratorium2'
+    },
+    {'title': 'testtitle3',
+      'author': 'testauthor3',
+      'user': 'moaratorium3'
+    },
+    ]
+
+      let storeQueue = []; 
+
+      function refreshTable(){
+        if (storeQueue.length <= 0 || typeof storeQueue == 'undefined'){
+          return;
+        } else {
+          $("#test-table").dataTable().fnClearTable();
+          $("#test-table").dataTable().fnAddData(storeQueue);
+        }
+      }
+
+
+    $(document).ready(() => {
+      var table = $("#test-table").DataTable({
+        columns: [
+          {title: 'Name', data: 'title'},
+          {title: 'Artist', data: 'author'},
+          {title: 'Requested By:', data: 'requester.username'}
+        ],
+        data: storeQueue,
+        order: {
+          idx: 1,
+          dir: 'asc'
+        },
+        language: {
+                    "paginate":{
+                      "previous": "<span class='fa fa-chevron-left'></span>",
+                        "next": "<span class='fa fa-chevron-right'></span>"
+                        },
+                    "emptyTable": "Add some songs!"
+                    }
+                });
+    });
+
     $(document).ready(() => {
       $.get("/api/user", (data) => {
         let Guild = data.user.guilds.find(
@@ -421,7 +511,7 @@
 
       $(".hoverRemove").hover(function() {
         $(this).css('cursor','pointer').attr('title', 'Click to remove from queue.');
-    }, function() {
+      }, function() {
         $(this).css('cursor','auto');
         })
 
@@ -430,7 +520,9 @@
         socket.emit("removeQueueIndex", window.location.pathname.split("/")[2], index)
       })
 
-      socket.on("server", (data) => {
+      socket.on("server", (data) => { 
+        storeQueue = data.queueDetails;
+        refreshTable();
         $("#songInQueue").text(data.queue);
         $("#songLoop").text(data.songsLoop);
         $("#queueLoop").text(data.queueLoop);
@@ -445,18 +537,9 @@
         else
           $("#duration").html(
             `<span> Nothing is playing right now, Add some songs in discord? </span>`
-          );
-        $("#q1-text").text((!data.queueDetails[0]) ? " " : data.queueDetails[0].title);
-        $("#q2-text").text((!data.queueDetails[1]) ? " " : data.queueDetails[1].title);
-        $("#q3-text").text((!data.queueDetails[2]) ? " " : data.queueDetails[2].title);
-        $("#q4-text").text((!data.queueDetails[3]) ? " " : data.queueDetails[3].title);
-        $("#q5-text").text((!data.queueDetails[4]) ? " " : data.queueDetails[4].title);
-        $("#q6-text").text((!data.queueDetails[5]) ? " " : data.queueDetails[5].title);
-        $("#q7-text").text((!data.queueDetails[6]) ? " " : data.queueDetails[6].title);
-        $("#q8-text").text((!data.queueDetails[7]) ? " " : data.queueDetails[7].title);
-        $("#q9-text").text((!data.queueDetails[8]) ? " " : data.queueDetails[8].title);
-        $("#q10-text").text((!data.queueDetails[9]) ? " " : data.queueDetails[9].title);
-      });
+          );    
+
     });
+      });
   </script>
 </html>
