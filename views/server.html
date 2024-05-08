@@ -375,6 +375,7 @@
                         <th>Title</th>
                         <th>Author</th>
                         <th>Requested By</th>
+                        <th></th>
                       </tr>
                     </thead>
                   </table>
@@ -448,21 +449,24 @@
       let storeQueue = []; 
 
       function refreshTable(){
-        if (storeQueue.length <= 0 || typeof storeQueue == 'undefined'){
-          return;
-        } else {
           $("#test-table").DataTable().clear();
           $("#test-table").DataTable().rows.add(storeQueue).draw();
         }
-      }
 
+      function sendRemove(index){
+        let socket = io();
+        let sendIndex = index;
+        let serverID = window.location.pathname.split("/")[2];
+        socket.emit("removeQueueIndex", (serverID, index));
+      };
 
     $(document).ready(() => {
       var table = $("#test-table").DataTable({
         columns: [
           {title: 'Name', data: 'title'},
           {title: 'Artist', data: 'author'},
-          {title: 'Requested By:', data: 'requester.username'}
+          {title: 'Requested By:', data: 'requester.username'},
+          {title: '', data: null, defaultContent: '<button>Remove</button>'}
         ],
         data: storeQueue,
         order: [],
@@ -474,6 +478,11 @@
                     "emptyTable": "Add some songs!"
                     }
                 });
+        table.on('click', 'button', function (e) {
+          let data = table.row(e.target.closest('tr')).data();
+          let thisRow = table.row(e.target.closest('tr')).index();
+          sendRemove(thisRow);
+        })
     });
 
     $(document).ready(() => {
