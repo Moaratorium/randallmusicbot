@@ -456,8 +456,8 @@
       function sendRemove(index){
         let socket = io();
         let sendIndex = index;
-        let serverID = window.location.pathname.split("/")[2];
-        socket.emit("removeQueueIndex", (serverID, index));
+        let ServerID = window.location.pathname.split("/")[2];
+        socket.emit("removeQueueIndex", ServerID, index);
       };
 
     $(document).ready(() => {
