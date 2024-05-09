@@ -464,7 +464,6 @@
                     }
                 });
         table.on('click', 'button', function (e) {
-          let data = table.row(e.target.closest('tr')).data();
           let thisRow = table.row(e.target.closest('tr')).index();
           sendRemove(thisRow);
         })
