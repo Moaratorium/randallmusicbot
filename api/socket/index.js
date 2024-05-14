@@ -56,7 +56,7 @@ module.exports = (io) => {
       if (!player) {
         return socket.emit("error", "No player exists");
       } else {
-        player.queue.splice(index, 1);
+        player.queue.remove(index);
       }
     })
 
