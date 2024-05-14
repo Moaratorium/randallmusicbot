@@ -118,3 +118,6 @@ guild.json
 # Volta
 .pnp.cjs
 .pnp.loader.mjs
+
+# Secrets (manual)
+botconfig.js
