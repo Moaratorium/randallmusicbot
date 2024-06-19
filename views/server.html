@@ -63,6 +63,11 @@
         font-family: "Euclid Circular B Medium", Poppins;
       }
 
+      .dark {
+        background: #061117;
+        color: #E1EAEB;
+      }
+
       #songInQueue,
       #queueLoop,
       #prefix,
@@ -120,7 +125,7 @@
         filter: contrast(1.25);
       }
 
-      #test-table {
+      #queue-table {
         color: #fff;
         font-size: large;
         font-weight: 500;
@@ -204,7 +209,7 @@
     </style>
   </head>
 
-  <body>
+  <body class="dark">
     <section class="main">
       <!--Main Navigation-->
       <header>
@@ -381,10 +386,10 @@
               <!-- Expanded Queue -->
               <div class="container text-center" id="queue-text">
                 <p>Queued: <span></span></p>
-                <div id="test-table-wrapper">
+                <div id="queue-table-wrapper">
                   <!-- queue table formatting here-->
                   <table
-                    id="test-table"
+                    id="queue-table"
                     class="table display cell-border table-striped hover"
                     width="100%"
                   >
@@ -455,11 +460,13 @@
   <script>
     let storeQueue;
     let dragActive = false;
+    const indexFixer = 1;
 
     function refreshTable() {
       if (dragActive === false) {
-        $("#test-table").DataTable().clear();
-        $("#test-table").DataTable().rows.add(storeQueue).draw();
+        console.log('table refreshed');
+        $("#queue-table").DataTable().clear();
+        $("#queue-table").DataTable().rows.add(storeQueue).draw();
       }
     }
 
@@ -471,7 +478,7 @@
     }
 
     $(document).ready(() => {
-      let table = $("#test-table").DataTable({
+      let table = $("#queue-table").DataTable({
         rowReorder: {
           dataSrc: "position",
           update: true,
@@ -504,11 +511,13 @@
         dragActive = false;
       });
 
-      table.on("row-reorder", function (e, diff, edit) {
-        let newQueue = storeQueue;
-        let newNode = table.rows({ page: "current" }).nodes().toArray();
-        let newAltQueue = table.rows({ page: "current" }).data();
-      });
+      // table.on("row-reorder", function (e, diff, edit) {
+      //   let newQueue = storeQueue;
+      //   let newNode = table.rows({ page: "current" }).nodes().toArray();
+      //   console.log(newNode)
+      //   let newAltQueue = table.rows({ page: "current" }).data();
+      //   console.log(newAltQueue)
+      // });
       
       table.on("row-reordered", function (e, diff, edit) {
             let reorderedQueue = storeQueue;
@@ -559,25 +568,25 @@
       function addPosition(queueArray) {
         for (let i = 0; i < queueArray.length; i++) {
           let addIndex = {};
-          addIndex.position = i + 1;
+          addIndex.position = i + indexFixer;
           Object.assign(queueArray[i], addIndex);
         }
       }
 
       socket.on("server", (data) => {
-        if (typeof code_happened === 'undefined') {
-        window.code_happened = true;
-
+        //if (typeof code_happened === 'undefined') {
+        //window.code_happened = true;
         storeQueue = data.queueDetails;
         addPosition(storeQueue);
         refreshTable();
         console.log("pre-row-reorder storeQueue");
         console.log(storeQueue);
-      }
+      //}
         $("#songInQueue").text(data.queue);
         $("#songLoop").text(data.songsLoop);
         $("#queueLoop").text(data.queueLoop);
         $("#prefix").text(data.prefix);
+        //refreshTable();
         $("#now-playing").text(
           data.nowPlaying ? data.nowPlaying.title : "Nothing playing"
         );

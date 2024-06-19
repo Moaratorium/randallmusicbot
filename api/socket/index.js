@@ -123,7 +123,7 @@ module.exports = (io) => {
             queueDetails: player.queue ? player.queue : null,
           });
         }
-      }, 1000);
+      }, 5000);
     });
   });
 };
