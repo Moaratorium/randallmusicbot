@@ -376,6 +376,24 @@ module.exports = {
             );
           case "TRACK_LOADED":
             player.queue.add(res.tracks[0]);
+
+            //start test
+            // let res2 = await player.search("https://soundcloud.com/alpha-wann-official/aaa", member.user);
+            // player.queue.add(res2.tracks[0]);
+            // let res3 = await player.search("https://soundcloud.com/bigt66928/bbb", member.user);
+            // player.queue.add(res3.tracks[0]);
+            // let res4 = await player.search("https://soundcloud.com/cryjaxx-music/candy-shop", member.user);
+            // player.queue.add(res4.tracks[0]);
+            // let res5 = await player.search("https://soundcloud.com/alpha-wann-official/aaa", member.user);
+            // player.queue.add(res5.tracks[0]);
+            // let res6 = await player.search("https://soundcloud.com/bigt66928/bbb", member.user);
+            // player.queue.add(res6.tracks[0]);
+            // let res7 = await player.search("https://soundcloud.com/cryjaxx-music/candy-shop", member.user);
+            // player.queue.add(res7.tracks[0]);
+
+            // player.play();
+
+            // endtest
             if (!player.playing && !player.paused && !player.queue.length)
               player.play();
             let SongAddedEmbed = new MessageEmbed();

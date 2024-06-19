@@ -60,6 +60,28 @@ module.exports = (io) => {
       }
     })
 
+    socket.on("reorderQueue", async (ServerID, queueFromDash) => {
+      const Client = require("../../index");
+      if (!Client.Ready) return;
+      let Guild = Client.guilds.cache.get(ServerID);
+      if (!Guild) return socket.emit("error", "Unable to find that server");
+      let player = Client.Manager.get(Guild.id);
+      if (!player) {
+        return socket.emit("error", "No player exists");
+      } else {
+        for (let i = 0; i <= player.queue.length; i++) {
+          player.queue.remove()
+          if (player.queue.length > 0){
+            player.queue.remove()
+          }
+        }
+        for (let i = 0; i < queueFromDash.length; i++) {
+          let searched = await player.search(queueFromDash[i].uri, queueFromDash[i].requester);
+          player.queue.add(searched.tracks);
+        }
+      } 
+    })
+
     socket.on("server", (ServerID) => {
       if (socket.Server) clearInterval(socket.Server);
       socket.Server = setInterval(async () => {

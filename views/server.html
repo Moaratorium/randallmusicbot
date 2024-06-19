@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard - Server</title>
     <link rel="shortcut icon" href="/logo2.png" type="image/png" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.6/css/dataTables.bootstrap5.css" type="css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/2.0.6/css/dataTables.bootstrap5.css"
+      type="css"
+    />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -27,22 +31,28 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.min.css" 
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/rowreorder/1.5.0/css/rowReorder.dataTables.min.css"
     />
     <style>
       @font-face {
         font-family: "Euclid Circular B Medium";
         src: url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.eot");
         src: url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.eot?#iefix")
-        format("embedded-opentype"),
-        url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.woff2")
-        format("woff2"),
-        url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.woff")
-        format("woff"),
-        url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.ttf")
-        format("truetype"),
-        url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.svg#Euclid Circular B Medium")
-        format("svg");
+            format("embedded-opentype"),
+          url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.woff2")
+            format("woff2"),
+          url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.woff")
+            format("woff"),
+          url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.ttf")
+            format("truetype"),
+          url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.svg#Euclid Circular B Medium")
+            format("svg");
         font-display: swap;
       }
 
@@ -53,11 +63,15 @@
         font-family: "Euclid Circular B Medium", Poppins;
       }
 
-      #songInQueue, #queueLoop, #prefix, #songLoop {
+      #songInQueue,
+      #queueLoop,
+      #prefix,
+      #songLoop {
         color: #792040;
       }
 
-      .card, .button-card {
+      .card,
+      .button-card {
         background: rgba(255, 255, 255, 0.35);
         box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
         backdrop-filter: blur(9px);
@@ -78,32 +92,32 @@
       }
 
       /* Table */
-      .table-striped>tbody>tr:nth-child(odd)>td, 
-      .table-striped>tbody>tr:nth-child(odd)>th {
-      background-color: #318b61;
-      color: #792040;
-      filter: contrast(1.25);
+      .table-striped > tbody > tr:nth-child(odd) > td,
+      .table-striped > tbody > tr:nth-child(odd) > th {
+        background-color: #318b61;
+        color: #792040;
+        filter: contrast(1.25);
       }
 
-      .table-striped>tbody>tr:nth-child(odd)>td:hover, 
-      .table-striped>tbody>tr:nth-child(odd)>th:hover {
-      background-color: #318b61;
-      color: #fff;
-      filter: contrast(1.25);
+      .table-striped > tbody > tr:nth-child(odd) > td:hover,
+      .table-striped > tbody > tr:nth-child(odd) > th:hover {
+        background-color: #318b61;
+        color: #fff;
+        filter: contrast(1.25);
       }
 
-      .table-striped>tbody>tr:nth-child(even)>td, 
-      .table-striped>tbody>tr:nth-child(even)>th {
-      background-color: #136f8b8c;
-      color: #792040;
-      filter: contrast(1.25);
+      .table-striped > tbody > tr:nth-child(even) > td,
+      .table-striped > tbody > tr:nth-child(even) > th {
+        background-color: #136f8b8c;
+        color: #792040;
+        filter: contrast(1.25);
       }
 
-      .table-striped>tbody>tr:nth-child(even)>td:hover, 
-      .table-striped>tbody>tr:nth-child(even)>th:hover {
-      background-color: #136f8b8c;
-      color:#fff;
-      filter: contrast(1.25);
+      .table-striped > tbody > tr:nth-child(even) > td:hover,
+      .table-striped > tbody > tr:nth-child(even) > th:hover {
+        background-color: #136f8b8c;
+        color: #fff;
+        filter: contrast(1.25);
       }
 
       #test-table {
@@ -369,7 +383,11 @@
                 <p>Queued: <span></span></p>
                 <div id="test-table-wrapper">
                   <!-- queue table formatting here-->
-                  <table id="test-table" class="table display cell-border table-striped hover" width="100%">
+                  <table
+                    id="test-table"
+                    class="table display cell-border table-striped hover"
+                    width="100%"
+                  >
                     <thead>
                       <tr>
                         <th>Title</th>
@@ -380,10 +398,14 @@
                     </thead>
                   </table>
                 </div>
-                  </div>
+              </div>
               <div id="button-tile">
-                <button class="button-card" id="skip-current"><span class="button-hover">Skip Current Song</span></button>
-                <button class="button-card" id="remove-last"><span class="button-hover">Remove Last Song</span></button>
+                <button class="button-card" id="skip-current">
+                  <span class="button-hover">Skip Current Song</span>
+                </button>
+                <button class="button-card" id="remove-last">
+                  <span class="button-hover">Remove Last Song</span>
+                </button>
               </div>
             </div>
           </section>
@@ -421,52 +443,85 @@
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
-    <script src='https://cdn.datatables.net/2.0.6/js/dataTables.js'></script>
-    <script src='https://cdn.datatables.net/2.0.6/js/dataTables.bootstrap5.js'></script>
+    <script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.6/js/dataTables.bootstrap5.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/rowreorder/1.5.0/js/dataTables.rowReorder.min.js"></script>
     <div class="circle1"></div>
     <div class="circle2"></div>
     <div class="circle3"></div>
   </body>
   <script>
+    let storeQueue;
+    let dragActive = false;
 
-      let storeQueue = []; 
+    function refreshTable() {
+      if (dragActive === false) {
+        $("#test-table").DataTable().clear();
+        $("#test-table").DataTable().rows.add(storeQueue).draw();
+      }
+    }
 
-      function refreshTable(){
-          $("#test-table").DataTable().clear();
-          $("#test-table").DataTable().rows.add(storeQueue).draw();
-        }
-
-      function sendRemove(index){
-        let socket = io();
-        let sendIndex = index;
-        let ServerID = window.location.pathname.split("/")[2];
-        socket.emit("removeQueueIndex", ServerID, index);
-      };
+    function sendRemove(index) {
+      let socket = io();
+      let sendIndex = index;
+      let ServerID = window.location.pathname.split("/")[2];
+      socket.emit("removeQueueIndex", ServerID, index);
+    }
 
     $(document).ready(() => {
-      var table = $("#test-table").DataTable({
+      let table = $("#test-table").DataTable({
+        rowReorder: {
+          dataSrc: "position",
+          update: true,
+        },
         columns: [
-          {title: 'Name', data: 'title'},
-          {title: 'Artist', data: 'author'},
-          {title: 'Requested By:', data: 'requester.username'},
-          {title: '', data: null, defaultContent: '<button>Remove</button>'}
+          { title: "Position", data: "position" },
+          { title: "Name", data: "title" },
+          { title: "Artist", data: "author" },
+          { title: "Requested By:", data: "requester.username" },
+          { title: "", data: null, defaultContent: "<button>Remove</button>" },
         ],
-        data: storeQueue,
-        order: [],
         language: {
-                    "paginate":{
-                      "previous": "<span class='fa fa-chevron-left'></span>",
-                        "next": "<span class='fa fa-chevron-right'></span>"
-                        },
-                    "emptyTable": "Add some songs!"
-                    }
-                });
-        table.on('click', 'button', function (e) {
-          let thisRow = table.row(e.target.closest('tr')).index();
-          sendRemove(thisRow);
-        })
+          paginate: {
+            previous: "<span class='fa fa-chevron-left'></span>",
+            next: "<span class='fa fa-chevron-right'></span>",
+          },
+          emptyTable: "Add some songs!",
+        },
+      });
+      table.on("click", "button", function (e) {
+        let thisRow = table.row(e.target.closest("tr")).index();
+        sendRemove(thisRow);
+      });
+
+      table.on("mousedown.rowReorder", function () {
+        dragActive = true;
+      });
+
+      $(document).on("mouseup", function () {
+        dragActive = false;
+      });
+
+      table.on("row-reorder", function (e, diff, edit) {
+        let newQueue = storeQueue;
+        let newNode = table.rows({ page: "current" }).nodes().toArray();
+        let newAltQueue = table.rows({ page: "current" }).data();
+      });
+      
+      table.on("row-reordered", function (e, diff, edit) {
+            let reorderedQueue = storeQueue;
+            let sendToSocket = [];
+            reorderedQueue.sort((a, b) => a.position - b.position);
+            let socket = io();
+            let ServerID = window.location.pathname.split("/")[2];
+            for (let i = 0; i < reorderedQueue.length; i++){
+              let temp = (({ title, uri, requester }) => ({ title, uri, requester }))(reorderedQueue[i])
+              sendToSocket.push(temp);
+            }
+            socket.emit("reorderQueue", ServerID, sendToSocket);
+        });
     });
 
     $(document).ready(() => {
@@ -489,32 +544,36 @@
       });
 
       var socket = io();
-      socket.emit("server", window.location.pathname.split("/")[2]); 
+      socket.emit("server", window.location.pathname.split("/")[2]);
       // grab the pathname, cut it into array, sends it to the socket server listener (args: "server", serverID) which triggers it to send misc data
-    
-      $(function(){
-        $("#remove-last").click(function(){
-          socket.emit("removeLast", window.location.pathname.split("/")[2])
-        })
-        $("#skip-current").click(function(){
-          socket.emit("skipCurrent", window.location.pathname.split("/")[2])
-        })
-      })
 
-      $(".hoverRemove").hover(function() {
-        $(this).css('cursor','pointer').attr('title', 'Click to remove from queue.');
-      }, function() {
-        $(this).css('cursor','auto');
-        })
+      $(function () {
+        $("#remove-last").click(function () {
+          socket.emit("removeLast", window.location.pathname.split("/")[2]);
+        });
+        $("#skip-current").click(function () {
+          socket.emit("skipCurrent", window.location.pathname.split("/")[2]);
+        });
+      });
 
-      $(".hoverRemove").click((value) =>{
-        let index = value;
-        socket.emit("removeQueueIndex", window.location.pathname.split("/")[2], index)
-      })
+      function addPosition(queueArray) {
+        for (let i = 0; i < queueArray.length; i++) {
+          let addIndex = {};
+          addIndex.position = i + 1;
+          Object.assign(queueArray[i], addIndex);
+        }
+      }
 
-      socket.on("server", (data) => { 
+      socket.on("server", (data) => {
+        if (typeof code_happened === 'undefined') {
+        window.code_happened = true;
+
         storeQueue = data.queueDetails;
+        addPosition(storeQueue);
         refreshTable();
+        console.log("pre-row-reorder storeQueue");
+        console.log(storeQueue);
+      }
         $("#songInQueue").text(data.queue);
         $("#songLoop").text(data.songsLoop);
         $("#queueLoop").text(data.queueLoop);
@@ -529,9 +588,8 @@
         else
           $("#duration").html(
             `<span> Nothing is playing right now, Add some songs in discord? </span>`
-          );    
-
-    });
+          );
       });
+    });
   </script>
 </html>
