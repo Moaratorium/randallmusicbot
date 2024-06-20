@@ -58,14 +58,9 @@
 
       body {
         background: linear-gradient(to right, #238a5a, #136f8b);
-        color: #fff;
+        color: #E1EAEB;
         overflow-x: hidden;
         font-family: "Euclid Circular B Medium", Poppins;
-      }
-
-      .dark {
-        background: #061117;
-        color: #E1EAEB;
       }
 
       #songInQueue,
@@ -78,7 +73,7 @@
       .card,
       .button-card {
         background: rgba(255, 255, 255, 0.35);
-        box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
+        box-shadow: 0 8px 32px 0 rgba(90, 90, 90, 0.37);
         backdrop-filter: blur(9px);
         -webkit-backdrop-filter: blur(9px);
         border-radius: 10px;
@@ -107,7 +102,7 @@
       .table-striped > tbody > tr:nth-child(odd) > td:hover,
       .table-striped > tbody > tr:nth-child(odd) > th:hover {
         background-color: #318b61;
-        color: #fff;
+        color: #E1EAEB;
         filter: contrast(1.25);
       }
 
@@ -121,12 +116,12 @@
       .table-striped > tbody > tr:nth-child(even) > td:hover,
       .table-striped > tbody > tr:nth-child(even) > th:hover {
         background-color: #136f8b8c;
-        color: #fff;
+        color: #E1EAEB;
         filter: contrast(1.25);
       }
 
       #queue-table {
-        color: #fff;
+        color: #E1EAEB;
         font-size: large;
         font-weight: 500;
         border-collapse: separate;
@@ -168,20 +163,22 @@
       }
 
       #song-info span:hover {
-        color: #fff;
+        color: #E1EAEB;
       }
 
+      /* Footer */
       .footer {
-        position: fixed;
-        left: 34vw;
-        right: 34vw;
+        position: relative;
+        left: 33%;
+        right: 33%;
+        top: 2vw;
         bottom: 0;
-        width: 32vw;
+        width: 33%;
         background-color: black;
-        color: white;
+        color: #E1EAEB;
         text-align: center;
         background: rgba(204, 204, 204, 0.486);
-        box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
+        box-shadow: 0 8px 32px 0 rgba(90, 90, 90, 0.37);
         backdrop-filter: blur(9px);
         -webkit-backdrop-filter: blur(9px);
         border: 2px solid rgba(252, 252, 252, 0.212);
@@ -192,7 +189,7 @@
         margin: 0;
         line-height: 26px;
         font-size: 15px;
-        color: #fff;
+        color: #E1EAEB;
       }
 
       .footer p a {
@@ -205,6 +202,100 @@
 
       .footer p a:hover {
         color: white;
+      }
+
+      /* Darkmode */
+      body.dark {
+        background: #061117;
+        color: #B6CBCC;
+      }
+
+      body.dark #song-info span {
+        color: #8EABAD;
+      }
+
+      body.dark #song-info span:hover {
+        color: #E1EAEB;
+      }
+
+      body.dark #songInQueue,
+      #queueLoop,
+      #prefix,
+      #songLoop {
+        color: #8EABAD;
+      }
+
+      body.dark .form-select {
+        background: #B6CBCC;
+        color: #061117;
+      }
+
+      body.dark .removeButton {
+        background: rgba(225, 234, 235, 0.25);
+        color: #B6CBCC;
+      }
+
+      /* Darkmode Table*/
+      body.dark .table-striped > tbody > tr:nth-child(odd) > td,
+      .table-striped > tbody > tr:nth-child(odd) > th {
+        background-color: rgba(142, 171, 173, 0.5);
+        color: #B6CBCC;
+        filter: contrast(1.25);
+      }
+
+      body.dark .table-striped > tbody > tr:nth-child(odd) > td:hover,
+      .table-striped > tbody > tr:nth-child(odd) > th:hover {
+        background-color: rgba(142, 171, 173, 0.5);
+        color: #E1EAEB;
+        filter: contrast(1.25);
+      }
+
+      body.dark .table-striped > tbody > tr:nth-child(even) > td,
+      .table-striped > tbody > tr:nth-child(even) > th {
+        background-color: rgba(28, 48, 50, 0.5);
+        color: #B6CBCC;
+        filter: contrast(1.25);
+      }
+
+      body.dark .table-striped > tbody > tr:nth-child(even) > td:hover,
+      .table-striped > tbody > tr:nth-child(even) > th:hover {
+        background-color: rgba(28, 48, 50, 0.5);
+        color: #E1EAEB;
+        filter: contrast(1.25);
+      }
+
+      /* Darkmode Pagination*/
+      body.dark .page-item {
+        border-radius: 15%;
+        border-color: #E1EAEB;
+      }
+
+      body.dark .page-item.disabled .page-link {
+        background: rgba(142, 171, 173, 0.5);
+        filter: contrast(1.25);
+      }
+
+      body.dark .page-item.active .page-link {
+        background: rgba(28, 48, 50, 0.5);
+        filter: contrast(1.25);
+        border-color: #E1EAEB;
+      }
+
+      /* Darkmode Footer */
+      body.dark .footer p {
+        color: #8EABAD;
+      }
+
+      body.dark .footer p a {
+        background: #8EABAD;
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        text-decoration: none;
+      }
+
+      body.dark  .footer p a:hover {
+        color: #E1EAEB;
       }
     </style>
   </head>
@@ -222,12 +313,12 @@
                 class="list-group-item list-group-item-action py-2 ripple"
                 style="
                   background: rgba(255, 255, 255, 0.35);
-                  box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
+                  box-shadow: 0 8px 32px 0 rgba(90, 90, 90, 0.37);
                   backdrop-filter: blur(9px);
                   -webkit-backdrop-filter: blur(9px);
                   border-radius: 10px;
                   border: 1px solid rgba(255, 255, 255, 0.18);
-                  color: #fff;
+                  color: #E1EAEB;
                 "
                 aria-current="true"
               >
@@ -240,12 +331,12 @@
                 class="list-group-item list-group-item-action py-2 ripple"
                 style="
                   background: rgba(255, 255, 255, 0.35);
-                  box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
+                  box-shadow: 0 8px 32px 0 rgba(90, 90, 90, 0.37);
                   backdrop-filter: blur(9px);
                   -webkit-backdrop-filter: blur(9px);
                   border-radius: 10px;
                   border: 1px solid rgba(255, 255, 255, 0.18);
-                  color: #fff;
+                  color: #E1EAEB;
                 "
               >
                 <i class="fa-brands fa-discord me-3"></i
@@ -257,12 +348,12 @@
                 class="list-group-item list-group-item-action py-2 ripple"
                 style="
                   background: rgba(255, 255, 255, 0.35);
-                  box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
+                  box-shadow: 0 8px 32px 0 rgba(90, 90, 90, 0.37);
                   backdrop-filter: blur(9px);
                   -webkit-backdrop-filter: blur(9px);
                   border-radius: 10px;
                   border: 1px solid rgba(255, 255, 255, 0.18);
-                  color: #fff;
+                  color: #E1EAEB;
                 "
               >
                 <i class="fas fa-sign-out-alt fa-fw me-3"></i
@@ -295,7 +386,7 @@
             </button>
 
             <!-- Brand -->
-            <a class="navbar-brand text-white" href="/">
+            <a class="navbar-brand text-white" href="/" style="color: #E1EAEB">
               <img src="/logo2.png" height="60" alt="" loading="lazy" />
               Dashboard - Manage Server
             </a>
@@ -488,7 +579,7 @@
           { title: "Name", data: "title" },
           { title: "Artist", data: "author" },
           { title: "Requested By:", data: "requester.username" },
-          { title: "", data: null, defaultContent: "<button>Remove</button>" },
+          { title: "", data: null, defaultContent: "<button class='removeButton'>Remove</button>" },
         ],
         language: {
           paginate: {
@@ -510,14 +601,6 @@
       $(document).on("mouseup", function () {
         dragActive = false;
       });
-
-      // table.on("row-reorder", function (e, diff, edit) {
-      //   let newQueue = storeQueue;
-      //   let newNode = table.rows({ page: "current" }).nodes().toArray();
-      //   console.log(newNode)
-      //   let newAltQueue = table.rows({ page: "current" }).data();
-      //   console.log(newAltQueue)
-      // });
       
       table.on("row-reordered", function (e, diff, edit) {
             let reorderedQueue = storeQueue;
