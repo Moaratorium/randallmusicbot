@@ -566,6 +566,9 @@
     let storeQueue;
     let dragActive = false;
     const indexFixer = 1;
+    const theme = window.localStorage.currentTheme;
+
+    $('body').addClass(theme); // keeps theme from other windows
 
     function refreshTable() {
       if (dragActive === false) {
@@ -585,7 +588,14 @@
     $("#darkmode-toggle").click(function(){
       $("body").toggleClass("dark");
       $("#toggle-image").toggleClass("fa-toggle-on");
-    })
+      if (window.localStorage.currentTheme === "dark") {
+            localStorage.removeItem('currentTheme');
+            localStorage.currentTheme = "light";
+            } else {
+              localStorage.removeItem('currentTheme');
+              localStorage.currentTheme = "dark";
+            }
+    });
 
     $(document).ready(() => {
       let table = $("#queue-table").DataTable({
