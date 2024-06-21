@@ -31,15 +31,15 @@
         font-family: "Euclid Circular B Medium";
         src: url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.eot");
         src: url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.eot?#iefix")
-        format("embedded-opentype"),
-        url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.woff2")
-        format("woff2"),
-        url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.woff")
-        format("woff"),
-        url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.ttf")
-        format("truetype"),
-        url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.svg#Euclid Circular B Medium")
-        format("svg");
+            format("embedded-opentype"),
+          url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.woff2")
+            format("woff2"),
+          url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.woff")
+            format("woff"),
+          url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.ttf")
+            format("truetype"),
+          url("https://db.onlinewebfonts.com/t/721c73bcd2e49f3a621991089838b503.svg#Euclid Circular B Medium")
+            format("svg");
         font-display: swap;
       }
 
@@ -309,19 +309,14 @@
               Dashboard
             </a>
             <a
-                  id="darkmode-toggle"
-                  class="btn"
-                  type="button"
-                  style="
-                  color: #e1eaeb;
-                  "
-                >
-                  <i
-                    id="toggle-image"
-                    class="fa-solid fa-toggle-off fa-fw me-3"
-                  ></i
-                  ><span>Dark Mode</span>
-          </a>
+              id="darkmode-toggle"
+              class="btn"
+              type="button"
+              style="color: #e1eaeb"
+            >
+              <i id="toggle-image" class="fa-solid fa-toggle-off fa-fw me-3"></i
+              ><span>Dark Mode</span>
+            </a>
           </div>
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -433,11 +428,7 @@
                 <th
                   scope="col"
                   style="
-                    background: linear-gradient(
-                      to right,
-                      #238a5a,
-                      #136f8b
-                    );
+                    background: linear-gradient(to right, #238a5a, #136f8b);
                     color: transparent;
                     -webkit-background-clip: text;
                     background-clip: text;
@@ -449,11 +440,7 @@
                 <th
                   scope="col"
                   style="
-                    background: linear-gradient(
-                      to right,
-                      #238a5a,
-                      #136f8b
-                    );
+                    background: linear-gradient(to right, #238a5a, #136f8b);
                     color: transparent;
                     -webkit-background-clip: text;
                     background-clip: text;
@@ -465,11 +452,7 @@
                 <th
                   scope="col"
                   style="
-                    background: linear-gradient(
-                      to right,
-                      #238a5a,
-                      #136f8b
-                    );
+                    background: linear-gradient(to right, #238a5a, #136f8b);
                     color: transparent;
                     -webkit-background-clip: text;
                     background-clip: text;
@@ -481,11 +464,7 @@
                 <th
                   scope="col"
                   style="
-                    background: linear-gradient(
-                      to right,
-                      #238a5a,
-                      #136f8b
-                    );
+                    background: linear-gradient(to right, #238a5a, #136f8b);
                     color: transparent;
                     -webkit-background-clip: text;
                     background-clip: text;
@@ -533,27 +512,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </body>
   <script>
-const theme = window.localStorage.currentTheme;
+    const theme = window.localStorage.currentTheme;
 
-$("body").addClass(theme); // keeps theme from other windows
+    $("body").addClass(theme); // keeps theme from other windows
 
-$(document).ready(()=> {
-  if (window.localStorage.currentTheme === "dark") {
-    $("#toggle-image").addClass("fa-toggle-on")
-  }
-})
+    $(document).ready(() => {
+      if (window.localStorage.currentTheme === "dark") {
+        $("#toggle-image").addClass("fa-toggle-on");
+      }
+    });
 
-$("#darkmode-toggle").click(function () {
-    $("body").toggleClass("dark");
-    $("#toggle-image").toggleClass("fa-toggle-on");
-    if (window.localStorage.currentTheme === "dark") {
-      localStorage.removeItem("currentTheme");
-      localStorage.currentTheme = "light";
-    } else {
-      localStorage.removeItem("currentTheme");
-      localStorage.currentTheme = "dark";
-    }
-  });
+    $("#darkmode-toggle").click(function () {
+      $("body").toggleClass("dark");
+      $("#toggle-image").toggleClass("fa-toggle-on");
+      if (window.localStorage.currentTheme === "dark") {
+        localStorage.removeItem("currentTheme");
+        localStorage.currentTheme = "light";
+      } else {
+        localStorage.removeItem("currentTheme");
+        localStorage.currentTheme = "dark";
+      }
+    });
 
     $(document).ready(() => {
       $.get("/api/info", (data) => {
