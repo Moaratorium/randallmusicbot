@@ -14,11 +14,11 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -308,6 +308,20 @@
             <a href="/dashboard" class="btn" type="button" style="color: white">
               Dashboard
             </a>
+            <a
+                  id="darkmode-toggle"
+                  class="btn"
+                  type="button"
+                  style="
+                  color: #e1eaeb;
+                  "
+                >
+                  <i
+                    id="toggle-image"
+                    class="fa-solid fa-toggle-off fa-fw me-3"
+                  ></i
+                  ><span>Dark Mode</span>
+          </a>
           </div>
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -519,6 +533,28 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </body>
   <script>
+const theme = window.localStorage.currentTheme;
+
+$("body").addClass(theme); // keeps theme from other windows
+
+$(document).ready(()=> {
+  if (window.localStorage.currentTheme === "dark") {
+    $("#toggle-image").addClass("fa-toggle-on")
+  }
+})
+
+$("#darkmode-toggle").click(function () {
+    $("body").toggleClass("dark");
+    $("#toggle-image").toggleClass("fa-toggle-on");
+    if (window.localStorage.currentTheme === "dark") {
+      localStorage.removeItem("currentTheme");
+      localStorage.currentTheme = "light";
+    } else {
+      localStorage.removeItem("currentTheme");
+      localStorage.currentTheme = "dark";
+    }
+  });
+
     $(document).ready(() => {
       $.get("/api/info", (data) => {
         //check api/routes.js

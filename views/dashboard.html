@@ -199,6 +199,26 @@
                 <i class="fas fa-sign-out-alt fa-fw me-3" style="color:#F5F5F5"></i
                 ><span>Logout</span>
               </a>
+              <br />
+              <button
+                  id="darkmode-toggle"
+                  class="list-group-item list-group-item-action py-2 ripple"
+                  style="
+                    background: rgba(255, 255, 255, 0.35);
+                    box-shadow: 0 8px 32px 0 rgba(90, 90, 90, 0.37);
+                    backdrop-filter: blur(9px);
+                    -webkit-backdrop-filter: blur(9px);
+                    border-radius: 10px;
+                    border: 1px solid rgba(255, 255, 255, 0.18);
+                    color: #e1eaeb;
+                  "
+                >
+                  <i
+                    id="toggle-image"
+                    class="fa-solid fa-toggle-off fa-fw me-3"
+                  ></i
+                  ><span>Dark Mode</span>
+                </button>
             </div>
           </div>
         </nav>
@@ -344,6 +364,28 @@
     <div class="circle3"></div>
   </body>
   <script>
+    const theme = window.localStorage.currentTheme;
+
+$("body").addClass(theme); // keeps theme from other windows
+
+$(document).ready(() => {
+  if (window.localStorage.currentTheme === "dark") {
+    $("#toggle-image").addClass("fa-toggle-on");
+  }
+});
+
+$("#darkmode-toggle").click(function () {
+      $("body").toggleClass("dark");
+      $("#toggle-image").toggleClass("fa-toggle-on");
+      if (window.localStorage.currentTheme === "dark") {
+        localStorage.removeItem("currentTheme");
+        localStorage.currentTheme = "light";
+      } else {
+        localStorage.removeItem("currentTheme");
+        localStorage.currentTheme = "dark";
+      }
+    });
+
     $(document).ready(() => {
       var socket = io();
       socket.emit("dashboard");

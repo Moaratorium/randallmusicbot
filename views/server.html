@@ -578,6 +578,12 @@
 
     $("body").addClass(theme); // keeps theme from other windows
 
+    $(document).ready(() => {
+      if (window.localStorage.currentTheme === "dark") {
+        $("#toggle-image").addClass("fa-toggle-on");
+      }
+    });
+
     function refreshTable() {
       if (dragActive === false) {
         console.log("table refreshed");
