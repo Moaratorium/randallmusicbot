@@ -58,7 +58,7 @@
 
       body {
         background: linear-gradient(to right, #238a5a, #136f8b);
-        color: #fff;
+        color: #e1eaeb;
         overflow-x: hidden;
         font-family: "Euclid Circular B Medium", Poppins;
       }
@@ -73,9 +73,7 @@
       .card,
       .button-card {
         background: rgba(255, 255, 255, 0.35);
-        box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
-        backdrop-filter: blur(9px);
-        -webkit-backdrop-filter: blur(9px);
+        box-shadow: 0 4px 16px 0 rgba(90, 90, 90, 0.37);
         border-radius: 10px;
         border: 2px solid rgba(252, 252, 252, 0.212);
         z-index: 2;
@@ -102,7 +100,7 @@
       .table-striped > tbody > tr:nth-child(odd) > td:hover,
       .table-striped > tbody > tr:nth-child(odd) > th:hover {
         background-color: #318b61;
-        color: #fff;
+        color: #e1eaeb;
         filter: contrast(1.25);
       }
 
@@ -116,12 +114,12 @@
       .table-striped > tbody > tr:nth-child(even) > td:hover,
       .table-striped > tbody > tr:nth-child(even) > th:hover {
         background-color: #136f8b8c;
-        color: #fff;
+        color: #e1eaeb;
         filter: contrast(1.25);
       }
 
-      #test-table {
-        color: #fff;
+      #queue-table {
+        color: #e1eaeb;
         font-size: large;
         font-weight: 500;
         border-collapse: separate;
@@ -163,22 +161,22 @@
       }
 
       #song-info span:hover {
-        color: #fff;
+        color: #e1eaeb;
       }
 
+      /* Footer */
       .footer {
-        position: fixed;
-        left: 34vw;
-        right: 34vw;
+        position: relative;
+        left: 33%;
+        right: 33%;
+        top: 2vw;
         bottom: 0;
-        width: 32vw;
+        width: 33%;
         background-color: black;
-        color: white;
+        color: #e1eaeb;
         text-align: center;
         background: rgba(204, 204, 204, 0.486);
-        box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
-        backdrop-filter: blur(9px);
-        -webkit-backdrop-filter: blur(9px);
+        box-shadow: 0 4px 16px 0 rgba(90, 90, 90, 0.37);
         border: 2px solid rgba(252, 252, 252, 0.212);
         border-radius: 16px;
       }
@@ -187,7 +185,7 @@
         margin: 0;
         line-height: 26px;
         font-size: 15px;
-        color: #fff;
+        color: #e1eaeb;
       }
 
       .footer p a {
@@ -201,10 +199,105 @@
       .footer p a:hover {
         color: white;
       }
+
+      /* Darkmode */
+      body.dark {
+        background: #061117;
+        color: #b6cbcc;
+      }
+
+      body.dark #song-info span {
+        color: #8eabad;
+      }
+
+      body.dark #song-info span:hover {
+        color: #e1eaeb;
+      }
+
+      body.dark #songInQueue,
+      body.dark #queueLoop,
+      body.dark #prefix,
+      body.dark #songLoop {
+        color: #8eabad;
+      }
+
+      body.dark .form-select {
+        background: #b6cbcc;
+        color: #061117;
+      }
+
+      body.dark .removeButton {
+        background: rgba(225, 234, 235, 0.25);
+        color: #b6cbcc;
+      }
+
+      /* Darkmode Table*/
+      body.dark .table-striped > tbody > tr:nth-child(odd) > td,
+      .table-striped > tbody > tr:nth-child(odd) > th {
+        background-color: rgba(142, 171, 173, 0.5);
+        color: #b6cbcc;
+        filter: contrast(1.25);
+      }
+
+      body.dark .table-striped > tbody > tr:nth-child(odd) > td:hover,
+      .table-striped > tbody > tr:nth-child(odd) > th:hover {
+        background-color: rgba(142, 171, 173, 0.5);
+        color: #e1eaeb;
+        filter: contrast(1.25);
+      }
+
+      body.dark .table-striped > tbody > tr:nth-child(even) > td,
+      .table-striped > tbody > tr:nth-child(even) > th {
+        background-color: rgba(28, 48, 50, 0.5);
+        color: #b6cbcc;
+        filter: contrast(1.25);
+      }
+
+      body.dark .table-striped > tbody > tr:nth-child(even) > td:hover,
+      .table-striped > tbody > tr:nth-child(even) > th:hover {
+        background-color: rgba(28, 48, 50, 0.5);
+        color: #e1eaeb;
+        filter: contrast(1.25);
+      }
+
+      /* Darkmode Pagination*/
+      body.dark .page-item {
+        border-radius: 15%;
+        border-color: #e1eaeb;
+      }
+
+      body.dark .page-item.disabled .page-link {
+        background: rgba(142, 171, 173, 0.5);
+        filter: contrast(1.25);
+      }
+
+      body.dark .page-item.active .page-link {
+        background: rgba(28, 48, 50, 0.5);
+        filter: contrast(1.25);
+        border-color: #e1eaeb;
+      }
+
+      /* Darkmode Footer */
+      body.dark .footer p {
+        color: #8eabad;
+      }
+
+      body.dark .footer p a {
+        background: #8eabad;
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        text-decoration: none;
+      }
+
+      body.dark .footer p a:hover {
+        color: #e1eaeb;
+      }
+      
     </style>
   </head>
 
-  <body>
+  <body class="dark">
     <section class="main">
       <!--Main Navigation-->
       <header>
@@ -217,12 +310,10 @@
                 class="list-group-item list-group-item-action py-2 ripple"
                 style="
                   background: rgba(255, 255, 255, 0.35);
-                  box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
-                  backdrop-filter: blur(9px);
-                  -webkit-backdrop-filter: blur(9px);
+                  box-shadow: 0 4px 16px 0 rgba(90, 90, 90, 0.37);
                   border-radius: 10px;
                   border: 1px solid rgba(255, 255, 255, 0.18);
-                  color: #fff;
+                  color: #e1eaeb;
                 "
                 aria-current="true"
               >
@@ -235,12 +326,10 @@
                 class="list-group-item list-group-item-action py-2 ripple"
                 style="
                   background: rgba(255, 255, 255, 0.35);
-                  box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
-                  backdrop-filter: blur(9px);
-                  -webkit-backdrop-filter: blur(9px);
+                  box-shadow: 0 4px 16px 0 rgba(90, 90, 90, 0.37);
                   border-radius: 10px;
                   border: 1px solid rgba(255, 255, 255, 0.18);
-                  color: #fff;
+                  color: #e1eaeb;
                 "
               >
                 <i class="fa-brands fa-discord me-3"></i
@@ -252,17 +341,35 @@
                 class="list-group-item list-group-item-action py-2 ripple"
                 style="
                   background: rgba(255, 255, 255, 0.35);
-                  box-shadow: 0 8px 32px 0 rgba(131, 84, 84, 0.37);
-                  backdrop-filter: blur(9px);
-                  -webkit-backdrop-filter: blur(9px);
+                  box-shadow: 0 4px 16px 0 rgba(90, 90, 90, 0.37);
                   border-radius: 10px;
                   border: 1px solid rgba(255, 255, 255, 0.18);
-                  color: #fff;
+                  color: #e1eaeb;
                 "
               >
                 <i class="fas fa-sign-out-alt fa-fw me-3"></i
                 ><span>Logout</span>
               </a>
+              <div>
+                <button
+                  id="darkmode-toggle"
+                  class="list-group-item list-group-item-action py-2 ripple"
+                  style="
+                    background: rgba(255, 255, 255, 0.35);
+                    box-shadow: 0 4px 16px 0 rgba(90, 90, 90, 0.37);
+                    border-radius: 10px;
+                    border: 1px solid rgba(255, 255, 255, 0.18);
+                    color: #e1eaeb;
+                    top: 2.5vh;
+                  "
+                >
+                  <i
+                    id="toggle-image"
+                    class="fa-solid fa-toggle-off fa-fw me-3"
+                  ></i
+                  ><span>Dark Mode</span>
+                </button>
+              </div>
             </div>
           </div>
         </nav>
@@ -290,7 +397,7 @@
             </button>
 
             <!-- Brand -->
-            <a class="navbar-brand text-white" href="/">
+            <a class="navbar-brand text-white" href="/" style="color: #e1eaeb">
               <img src="/logo2.png" height="60" alt="" loading="lazy" />
               Dashboard - Manage Server
             </a>
@@ -381,10 +488,10 @@
               <!-- Expanded Queue -->
               <div class="container text-center" id="queue-text">
                 <p>Queued: <span></span></p>
-                <div id="test-table-wrapper">
+                <div id="queue-table-wrapper">
                   <!-- queue table formatting here-->
                   <table
-                    id="test-table"
+                    id="queue-table"
                     class="table display cell-border table-striped hover"
                     width="100%"
                   >
@@ -455,11 +562,22 @@
   <script>
     let storeQueue;
     let dragActive = false;
+    const indexFixer = 1;
+    const theme = window.localStorage.currentTheme;
+
+    $("body").addClass(theme); // keeps theme from other windows
+
+    $(document).ready(() => {
+      if (window.localStorage.currentTheme === "dark") {
+        $("#toggle-image").addClass("fa-toggle-on");
+      }
+    });
 
     function refreshTable() {
       if (dragActive === false) {
-        $("#test-table").DataTable().clear();
-        $("#test-table").DataTable().rows.add(storeQueue).draw();
+        console.log("table refreshed");
+        $("#queue-table").DataTable().clear();
+        $("#queue-table").DataTable().rows.add(storeQueue).draw();
       }
     }
 
@@ -470,8 +588,20 @@
       socket.emit("removeQueueIndex", ServerID, index);
     }
 
+    $("#darkmode-toggle").click(function () {
+      $("body").toggleClass("dark");
+      $("#toggle-image").toggleClass("fa-toggle-on");
+      if (window.localStorage.currentTheme === "dark") {
+        localStorage.removeItem("currentTheme");
+        localStorage.currentTheme = "light";
+      } else {
+        localStorage.removeItem("currentTheme");
+        localStorage.currentTheme = "dark";
+      }
+    });
+
     $(document).ready(() => {
-      let table = $("#test-table").DataTable({
+      let table = $("#queue-table").DataTable({
         rowReorder: {
           dataSrc: "position",
           update: true,
@@ -481,7 +611,11 @@
           { title: "Name", data: "title" },
           { title: "Artist", data: "author" },
           { title: "Requested By:", data: "requester.username" },
-          { title: "", data: null, defaultContent: "<button>Remove</button>" },
+          {
+            title: "",
+            data: null,
+            defaultContent: "<button class='removeButton'>Remove</button>",
+          },
         ],
         language: {
           paginate: {
@@ -504,24 +638,22 @@
         dragActive = false;
       });
 
-      table.on("row-reorder", function (e, diff, edit) {
-        let newQueue = storeQueue;
-        let newNode = table.rows({ page: "current" }).nodes().toArray();
-        let newAltQueue = table.rows({ page: "current" }).data();
-      });
-      
       table.on("row-reordered", function (e, diff, edit) {
-            let reorderedQueue = storeQueue;
-            let sendToSocket = [];
-            reorderedQueue.sort((a, b) => a.position - b.position);
-            let socket = io();
-            let ServerID = window.location.pathname.split("/")[2];
-            for (let i = 0; i < reorderedQueue.length; i++){
-              let temp = (({ title, uri, requester }) => ({ title, uri, requester }))(reorderedQueue[i])
-              sendToSocket.push(temp);
-            }
-            socket.emit("reorderQueue", ServerID, sendToSocket);
-        });
+        let reorderedQueue = storeQueue;
+        let sendToSocket = [];
+        reorderedQueue.sort((a, b) => a.position - b.position);
+        let socket = io();
+        let ServerID = window.location.pathname.split("/")[2];
+        for (let i = 0; i < reorderedQueue.length; i++) {
+          let temp = (({ title, uri, requester }) => ({
+            title,
+            uri,
+            requester,
+          }))(reorderedQueue[i]);
+          sendToSocket.push(temp);
+        }
+        socket.emit("reorderQueue", ServerID, sendToSocket);
+      });
     });
 
     $(document).ready(() => {
@@ -559,25 +691,25 @@
       function addPosition(queueArray) {
         for (let i = 0; i < queueArray.length; i++) {
           let addIndex = {};
-          addIndex.position = i + 1;
+          addIndex.position = i + indexFixer;
           Object.assign(queueArray[i], addIndex);
         }
       }
 
       socket.on("server", (data) => {
-        if (typeof code_happened === 'undefined') {
-        window.code_happened = true;
-
+        //if (typeof code_happened === 'undefined') {
+        //window.code_happened = true;
         storeQueue = data.queueDetails;
         addPosition(storeQueue);
         refreshTable();
         console.log("pre-row-reorder storeQueue");
         console.log(storeQueue);
-      }
+        //}
         $("#songInQueue").text(data.queue);
         $("#songLoop").text(data.songsLoop);
         $("#queueLoop").text(data.queueLoop);
         $("#prefix").text(data.prefix);
+        //refreshTable();
         $("#now-playing").text(
           data.nowPlaying ? data.nowPlaying.title : "Nothing playing"
         );
