@@ -164,6 +164,14 @@
         color: #e1eaeb;
       }
 
+      #manual-search {
+        text-align: center;
+      }
+
+      #manual-song-submit {
+        display: inline;
+      }
+
       /* Footer */
       .footer {
         position: relative;
@@ -506,6 +514,16 @@
                   </table>
                 </div>
               </div>
+              <div id="manual-search">
+                <form onsubmit="return false" id="manualSongAdd">
+                  <label for="websubmit">Add a song:</label>
+                  <input type="text" name="websubmit" id="websubmit">
+                  <button class="button-card" id="manual-song-submit" onclick="webSongSearch()">
+                    <span class="button-hover">Search</span>
+                    </button>
+                </form>
+              </br>
+              </div>
               <div id="button-tile">
                 <button class="button-card" id="skip-current">
                   <span class="button-hover">Skip Current Song</span>
@@ -565,6 +583,16 @@
     const indexFixer = 1;
     const theme = window.localStorage.currentTheme;
 
+    function webSongSearch() {
+      let query = $("#websubmit").val();
+      let toReset = document.getElementById("manualSongAdd");
+      console.log(query)
+      let socket = io();
+      let ServerID = window.location.pathname.split("/")[2];
+      socket.emit("manualAddSong", ServerID, query)
+      console.log('song submitted')
+      toReset.reset();
+    }
 
     $(document).ready(() => {
       if (window.localStorage.currentTheme === "dark") {
