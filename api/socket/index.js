@@ -106,7 +106,7 @@ module.exports = (io) => {
         for (let i = 0; i <= player.queue.length; i++) {
           player.queue.remove()
           if (player.queue.length > 0){
-            player.queue.remove()
+            player.queue.remove() //here be dragons
           }
         }
         for (let i = 0; i < queueFromDash.length; i++) {
