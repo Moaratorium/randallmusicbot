@@ -60,6 +60,40 @@ module.exports = (io) => {
       }
     })
 
+    socket.on("manualAddSong", async (ServerID, query) => {
+      const Client = require("../../index");
+      if (!Client.Ready) return;
+      let Guild = Client.guilds.cache.get(ServerID);
+      if (!Guild) return socket.emit("error", "Unable to find that server");
+      let player = Client.Manager.get(Guild.id);
+      if (!player) {
+        return socket.emit("error", "No player exists");
+      } else {
+        let defaultRequester = {
+          id: "180530253112803328",
+          system: null,
+          locale: null,
+          flags: 0,
+          username: "moaratorium",
+          bot: false,
+          discriminator: "0",
+          avatar: "28adafa05b805a818ee829ba3a37a6c9",
+          lastMessageChannelID: null,
+          createdTimestamp: 1463112166432,
+          defaultAvatarURL: "https://cdn.discordapp.com/embed/avatars/0.png",
+          tag: "moaratorium#0",
+          avatarURL:
+            "https://cdn.discordapp.com/avatars/180530253112803328/28adafa05b805a818ee829ba3a37a6c9.webp",
+          displayAvatarURL:
+            "https://cdn.discordapp.com/avatars/180530253112803328/28adafa05b805a818ee829ba3a37a6c9.webp",
+        };
+        let searched = await player.search(query, defaultRequester); // table requires requester, need a way to hook in a "owner" from bot setup
+        player.queue.add(searched.tracks[0]); //adds first, need a check for no queue and potentially a url check
+        console.log(searched);
+      } 
+    })
+
+
     socket.on("reorderQueue", async (ServerID, queueFromDash) => {
       const Client = require("../../index");
       if (!Client.Ready) return;
@@ -72,7 +106,7 @@ module.exports = (io) => {
         for (let i = 0; i <= player.queue.length; i++) {
           player.queue.remove()
           if (player.queue.length > 0){
-            player.queue.remove()
+            player.queue.remove() //here be dragons
           }
         }
         for (let i = 0; i < queueFromDash.length; i++) {

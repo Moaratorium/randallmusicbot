@@ -555,23 +555,37 @@
   <script>
     const theme = window.localStorage.currentTheme;
 
-    $("body").addClass(theme); // keeps theme from other windows
-
     $(document).ready(() => {
       if (window.localStorage.currentTheme === "dark") {
+        $("#toggle-image").removeClass("fa-toggle-off")
         $("#toggle-image").addClass("fa-toggle-on");
+        $("body").removeClass("light");
+        $("body").addClass("dark");
+
+      }
+      if (window.localStorage.currentTheme === "light"){
+        $("#toggle-image").removeClass("fa-toggle-on");
+        $("#toggle-image").addClass("fa-toggle-off")
+        $("body").removeClass("dark");
+        $("body").addClass("light");
       }
     });
 
     $("#darkmode-toggle").click(function () {
-      $("body").toggleClass("dark");
-      $("#toggle-image").toggleClass("fa-toggle-on");
       if (window.localStorage.currentTheme === "dark") {
         localStorage.removeItem("currentTheme");
         localStorage.currentTheme = "light";
+        $("#toggle-image").removeClass("fa-toggle-on");
+        $("#toggle-image").addClass("fa-toggle-off");
+        $("body").removeClass("dark");
+        $("body").addClass("light");
       } else {
         localStorage.removeItem("currentTheme");
         localStorage.currentTheme = "dark";
+        $("#toggle-image").removeClass("fa-toggle-off");
+        $("#toggle-image").addClass("fa-toggle-on");
+        $("body").removeClass("light");
+        $("body").addClass("dark");
       }
     });
 

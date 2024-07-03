@@ -164,6 +164,14 @@
         color: #e1eaeb;
       }
 
+      #manual-search {
+        text-align: center;
+      }
+
+      #manual-song-submit {
+        display: inline;
+      }
+
       /* Footer */
       .footer {
         position: relative;
@@ -365,7 +373,7 @@
                 >
                   <i
                     id="toggle-image"
-                    class="fa-solid fa-toggle-off fa-fw me-3"
+                    class="fa-solid fa-fw fa-toggle-on me-3"
                   ></i
                   ><span>Dark Mode</span>
                 </button>
@@ -506,6 +514,16 @@
                   </table>
                 </div>
               </div>
+              <div id="manual-search">
+                <form onsubmit="return false" id="manualSongAdd">
+                  <label for="websubmit">Add a song:</label>
+                  <input type="text" name="websubmit" id="websubmit">
+                  <button class="button-card" id="manual-song-submit" onclick="webSongSearch()">
+                    <span class="button-hover">Search</span>
+                    </button>
+                </form>
+              </br>
+              </div>
               <div id="button-tile">
                 <button class="button-card" id="skip-current">
                   <span class="button-hover">Skip Current Song</span>
@@ -565,11 +583,48 @@
     const indexFixer = 1;
     const theme = window.localStorage.currentTheme;
 
-    $("body").addClass(theme); // keeps theme from other windows
+    function webSongSearch() {
+      let query = $("#websubmit").val();
+      let toReset = document.getElementById("manualSongAdd");
+      console.log(query)
+      let socket = io();
+      let ServerID = window.location.pathname.split("/")[2];
+      socket.emit("manualAddSong", ServerID, query)
+      console.log('song submitted')
+      toReset.reset();
+    }
 
     $(document).ready(() => {
       if (window.localStorage.currentTheme === "dark") {
+        $("#toggle-image").removeClass("fa-toggle-off")
         $("#toggle-image").addClass("fa-toggle-on");
+        $("body").removeClass("light");
+        $("body").addClass("dark");
+
+      }
+      if (window.localStorage.currentTheme === "light"){
+        $("#toggle-image").removeClass("fa-toggle-on");
+        $("#toggle-image").addClass("fa-toggle-off")
+        $("body").removeClass("dark");
+        $("body").addClass("light");
+      }
+    });
+
+    $("#darkmode-toggle").click(function () {
+      if (window.localStorage.currentTheme === "dark") {
+        localStorage.removeItem("currentTheme");
+        localStorage.currentTheme = "light";
+        $("#toggle-image").removeClass("fa-toggle-on");
+        $("#toggle-image").addClass("fa-toggle-off");
+        $("body").removeClass("dark");
+        $("body").addClass("light");
+      } else {
+        localStorage.removeItem("currentTheme");
+        localStorage.currentTheme = "dark";
+        $("#toggle-image").removeClass("fa-toggle-off");
+        $("#toggle-image").addClass("fa-toggle-on");
+        $("body").removeClass("light");
+        $("body").addClass("dark");
       }
     });
 
@@ -588,17 +643,6 @@
       socket.emit("removeQueueIndex", ServerID, index);
     }
 
-    $("#darkmode-toggle").click(function () {
-      $("body").toggleClass("dark");
-      $("#toggle-image").toggleClass("fa-toggle-on");
-      if (window.localStorage.currentTheme === "dark") {
-        localStorage.removeItem("currentTheme");
-        localStorage.currentTheme = "light";
-      } else {
-        localStorage.removeItem("currentTheme");
-        localStorage.currentTheme = "dark";
-      }
-    });
 
     $(document).ready(() => {
       let table = $("#queue-table").DataTable({
