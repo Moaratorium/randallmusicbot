@@ -12,6 +12,7 @@ const prettyMilliseconds = require("pretty-ms");
 const deezer = require("erela.js-deezer");
 const apple = require("erela.js-apple");
 const facebook = require("erela.js-facebook");
+const birthdayReminder = require("../birthdayreminder.js").birthdayReminderCore() // biggest shrug of my life
 let d;
 
 //Class extending Stuff
@@ -267,11 +268,25 @@ class DiscordMusicBot extends Client {
     }
   }
 
+  checkBirthdayReminder() {
+    this.log('birthday reminder test')
+  this.guilds.cache.forEach((guild) => {
+    this.log(`Birthday Test Loaded`);
+    this.botconfig.BirthdayReminder.forEach((server) => {
+      if (server.serverID === guild.id) {
+        birthdayReminderCore();
+        this.log(`Birthday Test Loaded ServerID: ${server.serverID}`)
+      }
+    })  
+  });
+}
+
   RegisterSlashCommands() {
     this.guilds.cache.forEach((guild) => {
       require("../util/RegisterSlashCommands")(this, guild.id);
     });
   }
+
 }
 
 module.exports = DiscordMusicBot;
