@@ -1,6 +1,7 @@
-const { client, MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { BirthdayReminder } = require('./botconfig.js');
-// const { client } = require("./structures/DiscordMusicBot");
+const  client  = require("./index.js");
+// const client = require("./structures/DiscordMusicBot.js")
 
 /* 
 Remember that everything needs to be passed once, perhaps only on botstart or perhaps we suck it up and loop hourly or something.
@@ -28,8 +29,10 @@ function sendDayOfMessage(serverIndex, birthDate, userID) {
 function sendEmbedToChannel() {
     // let bdayCakeEmoji = client.emojis.find(emoji => emoji.name === "birthday"
     // );
+    console.log(client)
     let channel = client.channels.cache.get("1207461053949284395"); // MT general
     console.log('started')
+    console.log(channel)
     channel.send({embeds: [startUpEmbed]});
     BirthdayReminder.forEach((server) => {
         if (server.enabled === true) {
@@ -96,6 +99,7 @@ function checkBirthdays(server, today) {
    // BirthdayReminder.forEach();
    console.log("func birthdayReminderCore hit")
    sendEmbedToChannel();
+   //setInterval((console.log('int'), 20000))
     
 };
  

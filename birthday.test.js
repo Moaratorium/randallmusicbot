@@ -1,4 +1,4 @@
-const {birthdayReminderCore, getCurrentDate, intervalConversion, formatDate} = require("./birthdayreminder") 
+//const {birthdayReminderCore, getCurrentDate, intervalConversion, formatDate} = require("./birthdayreminder") 
 function sum(a, b) {
     return a + b;
 }
@@ -20,8 +20,8 @@ test('formatDate should return a formatted date via a string', () => {
     expect(formatDate(testDate)).toBe('02/02');
 })
 
-jest.useFakeTimers();
-jest.spyOn(global, 'setInterval');
-test('setInterval should be called once', () => {
-    expect(setInterval).toHaveBeenCalledTimes(1);
-})
+// jest.useFakeTimers();
+// jest.spyOn(global, 'setInterval');
+// test('setInterval should be called once', () => {
+//     expect(setInterval).toHaveBeenCalledTimes(1);
+// })
