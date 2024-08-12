@@ -19,23 +19,21 @@ function birthdayReminderCore() {
   let nextDate = new Date();
   if (nextDate.getMinutes() === 0) {
     loopHandler();
-    console.log('passing immediately to birthdayLoop');
+    client.log('passing immediately to birthdayLoop');
   } else {
-    // console.log('needs to delay before loop')
     // nextDate.setHours(nextDate.getHours() + 1);
     // nextDate.setMinutes(0);
     // nextDate.setSeconds(0);
     // let diff = nextDate - new Date();
     // setTimeout(loopHandler, diff)
-    // console.log(`delayed by ${diff}`)
-    loopHandler();
-    console.log('test loop sent')
+    // client.log(`Delayed by ${diff} ms`)
+    loopHandler()
   }
 };
 
 function loopHandler() {
   let hour = 3600000;
-  let hourlyLoop = setInterval(checkServers, 10000);
+  setInterval(checkServers, 10000);
   client.log(`Setting Loop For An Hour`)
 }
 
@@ -53,23 +51,20 @@ function checkBirthdays(server, now) {
   let formattedWeekOut = aWeekBefore(now);
   if (server.enabled === true) {
       server.listOfUserIDs.forEach((user) => {
-        //if (user.userBirthday === formattedWeekOut){
-          let excludeBirthdayUser = "180530253112803328" // user.userID;
-          sendWeekOutDM(server, user, excludeBirthdayUser);
-        //}
-        //if (user.userBirthday === formattedCurrentDate) {
+        if (user.userBirthday === formattedWeekOut){
+          let excludeBirthdayUser = user.userID;
+          sendWeekOutDM(server, excludeBirthdayUser);
+        }
+        if (user.userBirthday === formattedCurrentDate) {
           sendDayOfMessage(server, user);
-        //}
-        // return;
+        }
       });
-
   } 
-  // return;
 }
 
 function aWeekBefore(today) {
   let oneWeekAgo = today;
-  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+  oneWeekAgo.setDate(oneWeekAgo.getDate() + 7);
   let formattedWeekBefore = formatDate(oneWeekAgo);
   return formattedWeekBefore;
 };
@@ -99,30 +94,18 @@ function sendDayOfMessage(server, user) {
     });
 }; 
 
-function sendWeekOutDM(server, thisUser, excludeBirthdayUser) {
-  let channel = client.channels.fetch(server.targetChannelID, false).then((channel) => {
-    console.log(channel);
+function sendWeekOutDM(server, excludeBirthdayUser) {
+  client.channels.fetch(server.targetChannelID, false).then((channel) => {
     let channelMembers = channel.members;
-    console.log(channelMembers)
     channelMembers.forEach((member) => {
-      console.log(member);
-      if (member.id !== excludeBirthdayUser && member.id !== "1207468658427961416") {
-        client.users.fetch("200444515633332226", false).then((thisMember) => {
-          // thisMember.send(server.weekOutReminder);
-          // console.log(member.id)
-          let message = "this is a test message";
-            const messageUser = "180530253112803328";
-            client.users.fetch(messageUser, false).then((user) => {
-              user.send(message);
-            })
-          console.log('asdasd')
+      if (member.id !== excludeBirthdayUser && member.id !== client.botconfig.ClientID) {
+        client.users.fetch(member.id, false).then((thisMember) => {
+          thisMember.send(server.weekOutReminder);
         });
       } else {
-        console.log('passing over iain')
         return;
       }
-    })
-    console.log('test')
+    });
   });
 };
 
