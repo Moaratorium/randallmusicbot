@@ -2,6 +2,7 @@ const fs = require("fs"); //rm
 const path = require("path"); //rm
 const { MessageEmbed } = require("discord.js");
 const { BirthdayReminder } = require('../botconfig.js');
+const stringinject = require("stringinject").default;
 
 
 //REMEMBER YOU MADE FORMAT CHANGES TO BOTCONFIG THAT SHOULD BE SANITIZED AND COMMITTED AT STORY ENDSTEP
@@ -83,28 +84,28 @@ function formatDate(date) {
 function sendDayOfMessage(server, user) {
   client.channels.fetch(server.targetChannelID).then((channel) => {
     let birthdayChannelEmbed = new MessageEmbed();
+    client.users.fetch(user.userID, false).then((thisUser) => {
+    let updatedMessage = stringinject(server.birthdayMessage, [thisUser.username, user.userBirthday]);
           birthdayChannelEmbed.setAuthor(
             `Birthday Reminder`
           );
           birthdayChannelEmbed.setColor(client.botconfig.EmbedColor);
           birthdayChannelEmbed.setDescription(
-            `${server.birthdayMessage}`,
+            `${updatedMessage}`,
             );
             return channel.send(birthdayChannelEmbed);
+    })
     });
 }; 
 
 function sendWeekOutDM(server, user, excludeBirthdayUser) {
   client.channels.fetch(server.targetChannelID, false).then((channel) => {
     let channelMembers = channel.members;
-    let username = '';
     client.users.fetch(user.userID, false).then((thisUser) => {
-      username = thisUser.username;
-      // weird starts
-      channelMembers.forEach((member) => {
+      channelMembers.forEach((member) => { // only sends to active members in text channel, will want to switch to role?
         if (member.id !== excludeBirthdayUser && member.id !== client.botconfig.ClientID) {
           client.users.fetch(member.id, false).then((thisMember) => {
-            let newMessage = stringinject(server.weekOutReminder, [username, user.userBirthday])
+            let newMessage = stringinject(server.weekOutReminder, [thisUser.username, user.userBirthday])
             thisMember.send(newMessage);
           });
         } else {
@@ -114,14 +115,6 @@ function sendWeekOutDM(server, user, excludeBirthdayUser) {
     })
   });
 };
-
-// function modifyMessages(string, username, date) {
-//   let newMessage = string.replace("USER", username);
-//   console.log(newMessage);
-//   newMessage.replace("DATE", date);
-//   console.log(newMessage);
-//   return newMessage;
-// }
 
 let ClientAPI = client.api.applications(client.user.id);
 birthdayReminderCore();
