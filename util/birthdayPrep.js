@@ -3,6 +3,7 @@ const path = require("path"); //rm
 const { MessageEmbed } = require("discord.js");
 const { BirthdayReminder } = require('../botconfig.js');
 
+
 //REMEMBER YOU MADE FORMAT CHANGES TO BOTCONFIG THAT SHOULD BE SANITIZED AND COMMITTED AT STORY ENDSTEP
 // TEST TEST TEST
 
@@ -53,7 +54,7 @@ function checkBirthdays(server, now) {
       server.listOfUserIDs.forEach((user) => {
         if (user.userBirthday === formattedWeekOut){
           let excludeBirthdayUser = user.userID;
-          sendWeekOutDM(server, excludeBirthdayUser);
+          sendWeekOutDM(server, user, excludeBirthdayUser);
         }
         if (user.userBirthday === formattedCurrentDate) {
           sendDayOfMessage(server, user);
@@ -82,7 +83,6 @@ function formatDate(date) {
 function sendDayOfMessage(server, user) {
   client.channels.fetch(server.targetChannelID).then((channel) => {
     let birthdayChannelEmbed = new MessageEmbed();
-    //let bdayCakeEmoji = client.emojis.find(emoji => emoji.name === "birthday");
           birthdayChannelEmbed.setAuthor(
             `Birthday Reminder`
           );
@@ -94,20 +94,34 @@ function sendDayOfMessage(server, user) {
     });
 }; 
 
-function sendWeekOutDM(server, excludeBirthdayUser) {
+function sendWeekOutDM(server, user, excludeBirthdayUser) {
   client.channels.fetch(server.targetChannelID, false).then((channel) => {
     let channelMembers = channel.members;
-    channelMembers.forEach((member) => {
-      if (member.id !== excludeBirthdayUser && member.id !== client.botconfig.ClientID) {
-        client.users.fetch(member.id, false).then((thisMember) => {
-          thisMember.send(server.weekOutReminder);
-        });
-      } else {
-        return;
-      }
-    });
+    let username = '';
+    client.users.fetch(user.userID, false).then((thisUser) => {
+      username = thisUser.username;
+      // weird starts
+      channelMembers.forEach((member) => {
+        if (member.id !== excludeBirthdayUser && member.id !== client.botconfig.ClientID) {
+          client.users.fetch(member.id, false).then((thisMember) => {
+            let newMessage = stringinject(server.weekOutReminder, [username, user.userBirthday])
+            thisMember.send(newMessage);
+          });
+        } else {
+          return;
+        }
+      });
+    })
   });
 };
+
+// function modifyMessages(string, username, date) {
+//   let newMessage = string.replace("USER", username);
+//   console.log(newMessage);
+//   newMessage.replace("DATE", date);
+//   console.log(newMessage);
+//   return newMessage;
+// }
 
 let ClientAPI = client.api.applications(client.user.id);
 birthdayReminderCore();
