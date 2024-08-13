@@ -2,7 +2,6 @@ const { Collection, Client, MessageEmbed } = require("discord.js");
 const { LavasfyClient } = require("lavasfy");
 const { Manager } = require("erela.js");
 const { Server } = require("socket.io");
-
 const http = require("http");
 const Jsoning = require("jsoning");
 const fs = require("fs");
@@ -270,8 +269,6 @@ class DiscordMusicBot extends Client {
 
   RunBirthdayPrep() {
     require("../util/birthdayPrep")(this);
-    console.log('test reminder')
-    //birthdayReminderCore();
 }
 
   RegisterSlashCommands() {
