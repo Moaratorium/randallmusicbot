@@ -43,6 +43,7 @@ module.exports = {
     ClientSecret: process.env.Spotify_ClientSecret || "", // Spotify Client Secret
   },
   // Birthday Addon Info, can be kept empty if not used. Add a new server entry with the same formatting for multiple server use.
+  // Note: requires "Server Members Intent" enabled if bot isn't verified @ discord.com/developers/applications/ThisIsWhereYourBotIDGoes/bot
   BirthdayReminder: [
     { 
       enabled: false, // toggles on/off for this server, KEEP THIS FALSE IF ANY VALUES FOR THIS SERVER ARE EMPTY
