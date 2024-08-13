@@ -4,9 +4,6 @@ const { MessageEmbed } = require("discord.js");
 const { BirthdayReminder } = require("../botconfig.js");
 const stringinject = require("stringinject").default;
 
-//REMEMBER YOU MADE FORMAT CHANGES TO BOTCONFIG THAT SHOULD BE SANITIZED AND COMMITTED AT STORY ENDSTEP
-// TEST TEST TEST
-
 module.exports = (client) => {
   /**
    *
