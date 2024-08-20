@@ -117,6 +117,5 @@ module.exports = (client) => {
     });
   }
 
-  let ClientAPI = client.api.applications(client.user.id);
   birthdayReminderCore();
 };
