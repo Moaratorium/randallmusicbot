@@ -267,11 +267,16 @@ class DiscordMusicBot extends Client {
     }
   }
 
+  RunBirthdayPrep() {
+    require("../util/birthdayPrep")(this);
+}
+
   RegisterSlashCommands() {
     this.guilds.cache.forEach((guild) => {
       require("../util/RegisterSlashCommands")(this, guild.id);
     });
   }
+
 }
 
 module.exports = DiscordMusicBot;

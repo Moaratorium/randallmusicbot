@@ -42,4 +42,26 @@ module.exports = {
     ClientID: process.env.Spotify_ClientID || "", // Spotify Client ID
     ClientSecret: process.env.Spotify_ClientSecret || "", // Spotify Client Secret
   },
+  // Birthday Addon Info, can be kept empty if not used. Add a new server entry with the same formatting for multiple server use.
+  // Note: requires "Server Members Intent" enabled if bot isn't verified @ discord.com/developers/applications/ThisIsWhereYourBotIDGoes/bot
+  BirthdayReminder: [
+    { 
+      enabled: false, // toggles on/off for this server, KEEP THIS FALSE IF ANY VALUES FOR THIS SERVER ARE EMPTY
+      serverID: "",// the serverID for the server you're using, this is mostly here in case the bot is running on multiple servers. Make a new JS object formatted in the same way for another server.
+      targetChannelID: "", // the ID of the channel you want the bot to post to one the day of a user's birthday.
+      reminderMessage: "{0}'s birthday is coming up on {1}! Make sure to send them a message.", // message you want DM'd to all members of the channel a week out from a birthday {0} = username, {1} = date
+      birthdayMessage: "Today is {1}, make sure to wish {0} a happy birthday! :birthday:", // message you want posted to channel on the day of someone's birthday {0} = username, {1} = date
+      alertHour: "10", // what hour of the day to send messages in 24 hour format
+      listOfUsers: [ // all userIDs and respective birthdays, add as many as you like in the below object format
+        {
+          userID: "", // Discord user ID   ex: 111111111111111111
+          userBirthday: "" // ex: "01/25"
+        },
+        {
+          userID: "", // Discord user ID   ex: 111111111111111111
+          userBirthday: "" // ex: "01/25"
+        },
+      ],
+    },
+  ]
 };

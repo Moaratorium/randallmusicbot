@@ -4,14 +4,14 @@ const prettyMilliseconds = require("pretty-ms");
 let d;
 
 module.exports = {
-  name: "play",
-  description: "Play your favorite songs",
-  usage: "[song]",
+  name: "test",
+  description: "slash command dev testing space",
+  usage: "[test]",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
-  aliases: [">"],
+  aliases: ["t"],
   /**
    *
    * @param {import("../structures/DiscordMusicBot")} client
@@ -210,11 +210,11 @@ module.exports = {
   SlashCommand: {
     options: [
       {
-        name: "song",
-        value: "song",
+        name: "test",
+        value: "test",
         type: 3,
         required: true,
-        description: "Play music in the voice channel",
+        description: "test command",
       },
     ],
     /**
@@ -286,7 +286,7 @@ module.exports = {
               player.play();
             let SongAddedEmbed = new MessageEmbed();
             SongAddedEmbed.setAuthor(
-              `Added to queue`,
+              `TEST CASE TRACK_LOADED`,
               client.botconfig.IconURL
             );
             SongAddedEmbed.setColor(client.botconfig.EmbedColor);
@@ -304,14 +304,14 @@ module.exports = {
                 `${player.queue.size - 0}`,
                 true
               );
-            return interaction.send(SongAddedEmbed);
+             return interaction.send(SongAddedEmbed); 
 
           case "SEARCH_RESULT":
             player.queue.add(TrackUtils.build(Searched.tracks[0], member.user));
             if (!player.playing && !player.paused && !player.queue.length)
               player.play();
             let SongAdded = new MessageEmbed();
-            SongAdded.setAuthor(`Added to queue`, client.botconfig.IconURL);
+            SongAdded.setAuthor(`TEST CASE SEARCH_RESULT`, client.botconfig.IconURL);
             SongAdded.setColor(client.botconfig.EmbedColor);
             SongAdded.setDescription(
               `[${Searched.tracks[0].info.title}](${Searched.tracks[0].info.uri})`
@@ -375,44 +375,84 @@ module.exports = {
               "❌ | **No results were found.**"
             );
           case "TRACK_LOADED":
-            player.queue.add(res.tracks[0]); 
+            player.queue.add(res.tracks[0]);
+
+            //start playtest
+            let res2 = await player.search("https://soundcloud.com/alpha-wann-official/aaa", member.user);
+            player.queue.add(res2.tracks[0]);
+            let res3 = await player.search("https://soundcloud.com/bigt66928/bbb", member.user);
+            player.queue.add(res3.tracks[0]);
+            let res4 = await player.search("https://soundcloud.com/cryjaxx-music/candy-shop", member.user);
+            player.queue.add(res4.tracks[0]);
+            let res5 = await player.search("https://soundcloud.com/alpha-wann-official/aaa", member.user);
+            player.queue.add(res5.tracks[0]);
+            let res6 = await player.search("https://soundcloud.com/bigt66928/bbb", member.user);
+            player.queue.add(res6.tracks[0]);
+            let res7 = await player.search("https://soundcloud.com/cryjaxx-music/candy-shop", member.user);
+            player.queue.add(res7.tracks[0]);
+
+            player.play();
+
+            // dm test starts here
+            let message = "this is a test message";
+            const messageUser = "180530253112803328";
+            client.users.fetch(messageUser, false).then((user) => {
+              user.send(message);
+            })
+            // embed test starts here
+            let startUpEmbed = new MessageEmbed();
+            //let bdayCakeEmoji = client.emojis.find(emoji => emoji.name === "birthday")
+            startUpEmbed.setAuthor(
+                `Birthday Reminder`//,
+                //bdayCakeEmoji
+            );
+            startUpEmbed.setColor(client.botconfig.EmbedColor);
+            startUpEmbed.setDescription(
+                `Birthday Reminder is now active!`
+            );
+            return interaction.send(startUpEmbed);
+            // end embed test
+
+            // end playtest
             if (!player.playing && !player.paused && !player.queue.length)
               player.play();
-            let SongAddedEmbed = new MessageEmbed();
-            SongAddedEmbed.setAuthor(
-              `Added to queue`,
-              client.botconfig.IconURL
-            );
-            //SongAddedEmbed.setThumbnail(res.tracks[0].displayThumbnail());
-            SongAddedEmbed.setColor(client.botconfig.EmbedColor);
-            SongAddedEmbed.setDescription(
-              `[${res.tracks[0].title}](${res.tracks[0].uri})`
-            );
-            SongAddedEmbed.addField("Author", res.tracks[0].author, true);
-            // Check if the duration matches the duration of a livestream
-            if (res.tracks[0].duration == 9223372036854776000) {
-              d = "Live";
-            } else {
-              d = prettyMilliseconds(res.tracks[0].duration, {
-                colonNotation: true,
-              });
-            }
+            // let SongAddedEmbed = new MessageEmbed();
+            // SongAddedEmbed.setAuthor(
+            //   `Added to queue`,
+            //   client.botconfig.IconURL
+            // );
+            // //SongAddedEmbed.setThumbnail(res.tracks[0].displayThumbnail());
+            // SongAddedEmbed.setColor(client.botconfig.EmbedColor);
+            // SongAddedEmbed.setDescription(
+            //   `[${res.tracks[0].title}](${res.tracks[0].uri})`
+            // );
+            // SongAddedEmbed.addField("Author", res.tracks[0].author, true);
+            // // Check if the duration matches the duration of a livestream
+            // if (res.tracks[0].duration == 9223372036854776000) {
+            //   d = "Live";
+            // } else {
+            //   d = prettyMilliseconds(res.tracks[0].duration, {
+            //     colonNotation: true,
+            //   });
+            // }
 
-            SongAddedEmbed.addField("Duration", `\`${d}\``, true);
-            if (player.queue.totalSize > 1)
-              SongAddedEmbed.addField(
-                "Position in queue",
-                `${player.queue.size - 0}`,
-                true
-              );
-            return interaction.send(SongAddedEmbed);
+            // SongAddedEmbed.addField("Duration", `\`${d}\``, true);
+            // if (player.queue.totalSize > 1)
+            //   SongAddedEmbed.addField(
+            //     "Position in queue",
+            //     `${player.queue.size - 0}`,
+            //     true
+            //   );
+            // return interaction.send(SongAddedEmbed);
+
+
 
           case "PLAYLIST_LOADED":
             player.queue.add(res.tracks);
             await player.play();
             let SongAdded = new MessageEmbed();
             SongAdded.setAuthor(
-              `Playlist added to queue`,
+              `TEST PLAYLIST LOADED`,
               client.botconfig.IconURL
             );
             //SongAdded.setThumbnail(res.tracks[0].displayThumbnail());
@@ -439,7 +479,7 @@ module.exports = {
             if (!player.playing && !player.paused && !player.queue.length) {
               let SongAddedEmbed = new MessageEmbed();
               SongAddedEmbed.setAuthor(
-                `Added to queue`,
+                `TEST SEARCH RESULT`,
                 client.botconfig.IconURL
               );
               SongAddedEmbed.setThumbnail(track.displayThumbnail());
