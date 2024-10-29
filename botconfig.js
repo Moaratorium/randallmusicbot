@@ -36,6 +36,7 @@ module.exports = {
     secure: false, // Set this to true if the lavalink uses SSL. if not set it to false.
     retryAmount: 200, //- The amount of times to retry connecting to the node if connection got dropped.
     retryDelay: 1000, //- Delay between reconnect attempts if connection is lost.
+    version: "v4"
   },
   // Spotify Integration, allows you to enter a spotify link.
   Spotify: {

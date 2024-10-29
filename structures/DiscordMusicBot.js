@@ -9,9 +9,9 @@ const path = require("path");
 const Express = require("express");
 const Logger = require("./Logger");
 const prettyMilliseconds = require("pretty-ms");
-const deezer = require("erela.js-deezer");
-const apple = require("erela.js-apple");
-const facebook = require("erela.js-facebook");
+// const deezer = require("erela.js-deezer");
+// const apple = require("erela.js-apple");
+// const facebook = require("erela.js-facebook");
 let d;
 
 //Class extending Stuff
@@ -129,12 +129,13 @@ class DiscordMusicBot extends Client {
           port: this.botconfig.Lavalink.port,
           password: this.botconfig.Lavalink.pass,
           secure: this.botconfig.Lavalink.secure,
+          version:this.botconfig.Lavalink.version
         },
       ]
     );
 
     this.Manager = new Manager({
-      plugins: [new deezer(), new apple(), new facebook()],
+      // plugins: [new deezer(), new apple(), new facebook()],
       nodes: [
         {
           identifier: this.botconfig.Lavalink.id,
@@ -144,6 +145,7 @@ class DiscordMusicBot extends Client {
           secure: this.botconfig.Lavalink.secure,
           retryAmount: this.botconfig.Lavalink.retryAmount,
           retryDelay: this.botconfig.Lavalink.retryDelay,
+          version:this.botconfig.Lavalink.version
         },
       ],
       send(id, payload) {
@@ -163,7 +165,7 @@ class DiscordMusicBot extends Client {
         this.SongsPlayed++;
         let TrackStartedEmbed = new MessageEmbed()
           .setAuthor(`Now playing ♪`, this.botconfig.IconURL)
-          .setThumbnail(player.queue.current.displayThumbnail())
+          // .setThumbnail(player.queue.current.displayThumbnail())
           .setDescription(`[${track.title}](${track.uri})`)
           .addField("Requested by", `${track.requester}`, true)
           .setColor(this.botconfig.EmbedColor);
